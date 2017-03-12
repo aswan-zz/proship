@@ -1,0 +1,33 @@
+<%= form_for(@note) do |f| %>
+  <% if @note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
+
+      <ul>
+      <% @note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div id="note_content_div" class="field">
+    <strong><%= f.label "Add note" %></strong><br>
+    <%= f.text_area :content, cols: 32, rows: 5 %>
+    <%= f.hidden_field :member_from_id %>
+    <%= f.hidden_field :member_to_id %>
+  	<div class="actions">
+      <%= button_tag "✓ Save", name: "save_note" %>
+      <%= button_tag "X Clear", type: :reset %>
+    </div>
+  </div>
+  <div id="note_type" class="field form_inline">
+  	<strong><%= f.label "Select type" %></strong><br />
+    <%= collection_radio_buttons(:note, 
+    							 :note_type_id, 
+    							 NoteType.all, 
+    							 :id, 
+    							 :name)
+	%>		
+  </div>
+<% end %>

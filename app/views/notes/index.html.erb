@@ -1,0 +1,33 @@
+
+<strong>Notes History</strong>
+<div id="note_types">
+  <% NoteType.all.each do |note_types| %>
+    <div class="note_type"><%= note_types.name %></div>
+  <% end %>
+</div>
+<div id="past_notes">
+	<% @notes.each do |note| %>
+	  <div class="past_note_item">
+	    <div class="note_type_icon"><%= note.note_type.name %></div>
+	    <div class="note_content">
+	    	<%= note.content %>
+	    	<br />
+	    	<div class="note_entered_by">
+	    		Entered by 
+	    		<% if defined?(note.member_from) && (note.member_from != nil) then %>
+	    		<%= note.member_from.fist_name %> 
+	    		<% else %>
+	    		unknown 
+	    		<%end%>
+	    		on <%= note.created_at %> 
+	    	</div>
+	    </div>
+	    <div class="note_actions">
+	    	<%= link_to 'Edit', edit_note_path(note), id: "edit_past_comment" %>
+			<%= link_to 'Destroy',  
+				note, method: :delete, 
+				id: "delete_past_comment" %>
+		</div>
+	  </div>
+	<% end %>
+</div>

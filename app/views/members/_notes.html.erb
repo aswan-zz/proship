@@ -1,0 +1,92 @@
+          <div id="body_notes" class="body_column">
+            <div class="column_header">Notes</div>
+            <div class="body_column_content">
+            	<div id="new_note_div">
+	            <script>
+	            $(document).ready(function(){
+				    $( "#new_note_div" ).load( "/notes/new" );
+				    $( document ).ajaxComplete(function( event, request, settings ) {
+				    	$("#note_member_to_id").val(<%=@member.id%>);
+				    	//$("<br/>").insertAfter("#new_note label");
+				    	
+						$('#edit_past_comment').click(function (event) {
+						  var addressValue = $(this).attr("href");
+						  edit_comment( addressValue );
+						  event.preventDefault();
+						});
+						$('#delete_past_comment').click(function (event) {
+						  var addressValue = $(this).attr("href");
+						  delete_comment( addressValue );
+						  event.preventDefault();
+						  return false;
+						});
+					});
+					//alert()
+					if ( $( "#note_history" ).val() == "" ) {
+				    	$( "#note_history" ).load( "/notes" );
+					}
+					
+					$("#new_note_div").submit(function(e) {
+					    var url = $('#new_note').attr("action");;
+					    e.preventDefault();					
+						var method = $('#new_note').attr("method");
+
+					    $.ajax({
+				           type: method,
+				           url: url,
+				           dataType : 'JSON',
+				           data: $("#new_note").serialize(), 
+				           success: function(data) {
+				             $("#new_note")[0].reset();
+				             $( "#note_history" ).load( "/notes" );
+				             $('#new_note').attr("action", "/notes");
+				             $('#new_note').attr("method", "POST");
+				           },
+				           error: function(data) {
+				           	 
+				           }
+				         });
+					});
+					
+					function edit_comment(url) {
+					    $.ajax({
+				           type: "GET",
+				           url: url,
+				           dataType : 'JSON',
+				           success: function(data) {
+							 var jsonPretty = JSON.stringify(data, null, '\t');
+			           		 //alert("Made it" + jsonPretty);
+			               	 $("#note_content").val(data.content);
+			               	 $("#member_to_id").val(data.member_to_id);
+			               	 $("#member_from_id").val(data.member_from_id);
+			               	 $('input[name="note[note_type_id]"]').val([data.note_type_id]);
+				             $('#new_note').attr("action", "/notes/" + data.id);
+				             $('#new_note').attr("method", "PATCH");
+				           },
+				           error: function(data) {
+				           	 alert("There was a problem " + data);
+				           }
+				         });
+					}
+					function delete_comment(url) {
+					    $.ajax({
+				           type: "DELETE",
+				           url: url,
+				           dataType : 'JSON',
+				           success: function(data) {
+							 var jsonPretty = JSON.stringify(data, null, '\t');
+			           		 //alert("Made it" + jsonPretty);
+			               	 $( "#note_history" ).load( "/notes" );
+			               	 alert("Delete done");
+				           },
+				           error: function(data) {
+				           	 alert("There was a problem " + data);
+				           }
+				         });
+					}
+				});
+				</script>
+				</div>
+				<div id="note_history"></div>
+			</div>
+          </div>

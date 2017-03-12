@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  note_type_id: 
+  member_from_id: 
+  member_to_id: 
+
+two:
+  content: MyText
+  note_type_id: 
+  member_from_id: 
+  member_to_id: 

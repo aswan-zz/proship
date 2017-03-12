@@ -1,0 +1,50 @@
+          <div id="body_essentials" class="body_column body_column_left">
+            <div class="column_header">Essentials
+            	<div class="edit"><%= link_to image_tag("edit_pencil.png", {height: 14}), edit_member_path(@member) %></div>
+            </div>
+            <div class="body_column_content">
+<p>
+  <em>Email:</em>
+  <span class="candidate_info"><%= @member.email %></span>
+</p>
+
+<p>
+  <em>Birthday:</em>
+  <span class="candidate_info"><%= @member.birthday %></span>
+</p>
+
+<p>
+  <em>Address:</em>
+  <span class="candidate_info"><%= @member.address %>
+  	<br/><%= @member.city %>, <%= @member.state_prov %>, <%= @member.country %>
+  	<br/><%= @member.zip_post %>
+  </span>
+</p>
+
+<p>
+  <em>Home airport:</em>
+  <span class="candidate_info"><%= @member.home_airport %></span>
+</p>
+
+<p>
+  <em>Medical conditions:</em>
+  <span class="candidate_info"><%= @member.medical_conditions %></span>
+</p>
+
+<p>
+  <em>Criminal convictions:</em>
+  <span class="candidate_info"><%= @member.criminal_convictions %></span>
+</p>
+
+<p>
+  <em>Residency:</em>
+  <span class="candidate_info"><%= @member.residency %></span>
+</p>
+
+<p>
+  <em>Citizenship:</em>
+  <span class="candidate_info"><%= @member.citizenship %></span>
+</p>
+            	
+            </div>
+          </div>

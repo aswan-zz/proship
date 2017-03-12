@@ -1,0 +1,39 @@
+          <div id="candidate_header" class="body_column">
+            <div id="candidate_photo"><%= image_tag "candidate-profile-frame.png", {height: 124} %></div>
+            <div id="candidate_quick_bio">
+              <div id="candidate_quick_bio_inner">
+                <div id="candidate_name">Mr. <%= @member.first_name %> <%= @member.last_name %></div>
+                <div id="candidate_quick_info">
+                  Pronounce as: <%= @member.pronounce %><br/>
+                  Primary: Alto Sax<br/>
+                  Employee number: <%= @member.employee_number %><br/>
+                  Available from: 2017/03/12<br/>
+                </div>
+              </div>
+            </div>
+            <div id="candidate_head_history">
+              <div id="candidate_head_history_inner">
+                <div id="cand_head_contracts" class="cand_header_right">
+                  <div class="chr_number">4</div>Completed Contracts
+                  <%= image_tag "cand_check.png" %>
+                </div>
+                <div id="cand_head_notes" class="cand_header_right">
+                  <div class="chr_number">1</div>Positive Notes
+                  <%= image_tag "cand_thumb.png" %>
+                </div>
+                <div id="cand_head_flags" class="cand_header_right">
+                  <div class="chr_number">3</div>Red Flags
+                  <%= image_tag "cand_flag.png" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% if @member.home_airport %>
+          <style>
+            #candidate_photo {
+	            background: url(<%= image_tag "edit_pencil" %>);
+	    		background-size: 80px 60px;
+	    		background-repeat: no-repeat;
+			}
+          </style>
+          <% end %>

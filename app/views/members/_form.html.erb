@@ -1,0 +1,83 @@
+
+<%= form_for(@member) do |f| %>
+  <% if @member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+      <% @member.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+			  <div class="field">
+			    <%= f.label :first_name %><br>
+			    <%= f.text_field :first_name %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :last_name %><br>
+			    <%= f.text_field :last_name %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :pronunciation %><br>
+			    <%= f.text_field :pronounce %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :birthday %><br>
+			    <%= f.date_select :birthday %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :email %><br>
+			    <%= f.text_field :email %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :address %><br>
+			    <%= f.text_field :address %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :city %><br>
+			    <%= f.text_field :city %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :state_prov %><br>
+			    <%= f.number_field :state_prov %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :country %><br>
+			    <%= f.number_field :country %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :zip_post %><br>
+			    <%= f.text_field :zip_post %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :home_airport %><br>
+			    <%= f.text_field :home_airport %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :residency %><br>
+			    <%= f.number_field :residency %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :citizenship %><br>
+			    <%= f.number_field :citizenship %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :medical_conditions %><br>
+			    <%= f.text_area :medical_conditions %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :criminal_convictions %><br>
+			    <%= f.text_area :criminal_convictions %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :employee_number %><br>
+			    <%= f.number_field :employee_number %>
+			  </div>
+			  <div class="actions">
+			    <%= f.submit %>
+			  </div>
+
+<% end %>

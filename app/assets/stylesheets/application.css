@@ -1,0 +1,407 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require jquery.fileupload
+ *= require jquery.fileupload-ui
+ * 
+ */
+body {
+  padding: 0;
+  margin: 0;
+  background: #9ca4ab;
+  color: white;
+  font: 1.0em arial, sans-serif;
+}
+#main {
+  height: auto;
+  width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#header{
+  height: 56px;
+  width: 1180px;
+  color: #ffffff;
+  display: flex;
+}
+#head_logo {
+  background: #22272d;
+  font: italic bold 1.0em verdana, sans-serif;
+  width: 140px;
+  height: inherit;
+  line-height: 56px;
+  text-align: center;
+}
+#head_back_btn {
+  background: #2e3e52;
+  font: bold 1.0em verdana, sans-serif;
+  width: 56px;
+  line-height: 56px;
+  text-align: center;
+}
+#head_menu {
+  background: #3c5168;
+  height: inherit;
+  flex-grow: 1;
+  display: flex;
+}
+#head_menu_main {
+  width: 768px;
+  height: inherit;
+  vertical-align: middle;
+}
+.top_menu_item {
+  font: bold 1.0em arial, sans-serif;
+  line-height: 56px;
+  align-content: center;
+  padding-left: 30px;
+  width: 70px;
+  float: left;
+}
+#head_login {
+  font: 0.7em arial, sans-serif;
+  width: 214px;
+  height: inherit;
+  line-height: 56px;
+}
+#hello_member {
+  float: right;
+}
+.seperator {
+  float: right;
+  padding: 0px 5px 0px 5px;
+}
+#logout {
+  color: #4bd3ea;
+  font: italic 0.9em arial, sans-serif;
+  width: 60px;
+  line-height: 56px;
+  float: right;
+  margin: 0px 12px 0px 0px;
+}
+#logout img {
+  width: 14px;
+  margin: 0px 2px 1px 0px;
+  vertical-align: middle;
+}
+#body {
+  width: 1180px;
+  height: 100%;
+  display: flex;
+}
+#body_left_col {
+  width: 156px;
+  background: #3d3f44;
+  padding: 20px;
+}
+#body_main_col {
+  height: inherit;
+  flex-grow: 1;
+  background: #2d2c2c;
+  float: right;
+}
+#body_center_col {
+  width: 750px;
+  float: left;
+  height: inherit;
+  padding: 8px;
+}
+#body_right_col {
+  width: 210px;
+  height: inherit;
+  float: left;
+  padding: 8px 8px 0px 0px;
+}
+.right_col_btn {
+  background: #0f6597;
+  margin-bottom: 8px;
+  width: 210px;
+  height: 40px;
+}
+.body_column {
+  margin-bottom: 8px;
+  float: left;
+}
+.body_column_left {
+  margin-right: 7px;
+}
+.one_hundred {
+  width: 100%;
+}
+.column_header {
+  font: italic 0.9em arial, sans-serif;
+  color: white;
+  padding-left: 20px;
+  line-height: 48px;
+  background: #303b49;
+  float: left;
+  box-sizing: border-box;
+  width: inherit;
+}
+.body_column_content {
+  background: #e5e6e7;
+  min-height: 100px;
+  padding: 0px 20px 20px 20px;
+  float: left;
+  box-sizing: border-box;
+  width: inherit;
+}
+
+#body_right_col .body_column_content {
+  background: #3d3f44;
+}
+#body_center_col .body_column_content {
+  font: italic 6pt arial, sans-serif; 
+
+}
+#body_essentials {
+  width: 299px;
+  float: left;
+}
+#body_essentials p {
+  color: #3d3f44;
+  border-bottom: 1px solid;
+  padding: 0px 0px 8px 0px;
+  font: italic 6pt arial, sans-serif; 
+  width: 100%; 
+  min-height: 14px;
+}
+#body_essentials p .candidate_info {
+  margin-left: 100px;
+  font-weight: bold;
+  display: block;
+}
+#body_essentials p em {
+  position: absolute;
+}
+#body_notes {
+  width: 444px;
+  float: left;
+}
+
+#candidate_header {
+  width: 100%;
+  background: #303b49;
+  color: white;
+  font: 0.6em arial, sans-serif;
+  display: flex;
+}
+#candidate_photo {
+  background: white;
+  width: 124px;
+  height: 124px;
+}
+#candidate_quick_bio {
+  line-height: 124px;
+  vertical-align: middle;
+  position: relative;
+  flex-grow: 1;
+}
+#candidate_quick_bio_inner {
+  line-height: normal;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+}
+#candidate_name {
+  font: bold 1.9em arial, sans-serif;
+}
+#candidate_head_history {
+  width: 240px;
+  font-style: italic;
+  display: flex;
+  position: relative;
+}
+#candidate_head_history_inner {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+}
+.cand_header_right {
+  width: 50px;
+  margin: 0px 30px 0px 0px;
+  text-align: center;
+  float: right;
+}
+#cand_head_flags {
+  padding: 0 10px 0 10px;
+  width: 30px;
+}
+.chr_number {
+  font: bold 1.4em arial, sans-serif;
+}
+.cand_header_right img {
+  margin: 2px auto 0px auto;
+  width: 18px;
+  display: block;
+}
+.left_title {
+  color: #2783c5;
+  font: italic 1.0em arial, sans-serif;
+}
+#body_left_col .body_column ul, #body_left_col .body_column ol {
+  color: #a5a6a7;
+  font: 0.6em arial, sans-serif;
+  padding: 0;
+  list-style-position: inside;
+}
+#body_left_col .body_column ul {
+  font: 0.7em arial, sans-serif;
+  list-style-type: none;
+}
+#body_left_col .body_column li {
+  margin-bottom: 8px;
+}
+#candidate_form {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.field {
+  -webkit-flex: 1 auto;
+  flex: 1 auto;
+  margin-right: 20px;
+  color: #22272D;
+}
+#body_register .field:nth-child(2n) {
+  width: 400px;
+}
+#body_register .field:nth-child(3n) {
+  width: 500px;
+}
+#body_register .field:nth-child(4n) {
+  width: 500px;
+}
+#body_register .field:nth-child(5n) input {
+  width: 400px;
+}
+#body_register .field:nth-child(6n) input {
+  width: 400px;
+}
+#body_register .field:nth-child(7n) input {
+  width: 260px;
+}
+#body_register .field:nth-child(10n), .field:nth-child(10n) input {
+  width: 120px;
+}
+#body_register .field:nth-child(13n), .field:nth-child(13n) input {
+  width: 400px;
+}
+#body_register .field:nth-child(14n), .field:nth-child(14n) textarea, .field:nth-child(15n), .field:nth-child(15n) textarea {
+  width: 400px;
+ }
+#body_register .field:nth-child(14n) textarea, .field:nth-child(15n) textarea {
+  height: 60px;
+}
+#body_register .field:nth-child(17n) {
+  width: 100%;
+}
+.body_column_content th, .body_column_content td {
+  font: 6pt arial, sans-serif;
+  color: #3d3f44;
+  padding: 1px 18px 1px 0px;
+}
+.body_column_content th {
+  font-weight: bold;
+}
+.column_header .edit {
+  float: right;
+  margin-right: 20px;
+}
+#note_content_div {
+  width: 260px;
+  float: left;
+}
+#body_notes .body_column_content, #body_notes .body_column_content #new_note_div {
+  float: left;
+  box-sizing: border-box;
+}
+#new_note_div {
+  padding-top: 10px;
+}
+#note_content {
+  width: 254px;
+}
+#note_type {
+  width: 100px;
+  float: left;
+}
+#note_type input {
+}
+#new_note .actions {
+  display: block;
+  width: 260px;
+}
+#new_note .actions input, #new_note .actions button {
+  float: right;
+}
+#note_history {
+  float:left;
+  font-weight: bold;
+}
+#note_types .note_type {
+  width: 80px;
+  color: black;
+  float: left;
+}
+#past_notes {
+  overflow: auto;
+  height: 120px;
+  float: left;
+  margin-top: 10px;
+  background: white;
+  color: black;
+  padding: 12px;
+}
+.past_note_item, .note_type_icon, .note_content, .note_actions {
+  float:left;
+}
+.note_type_icon {
+  width: 40px;
+}
+.note_content {
+  width: 260px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid black;
+}
+.note_actions {
+  width: 60px;
+}
+.past_note_item {
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+.note_entered_by {
+  color: #c1c4ca;
+  font: 6pt arial, sans-serif;
+}
+button {
+  color: white;
+  background: #27b3d5;
+  border: none;
+  font: bold 7pt Arial, sans-serif;
+  padding: 2px 12px 3px 6px;
+  height: 22px;
+  margin: 5px 0px 0px 5px;
+}
+button[type="reset"] {
+  background: grey;
+  padding-top: 4px;
+}
+	

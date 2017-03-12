@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  original_name: 
+  file_name: 
+  profile: 
+  image_data: MyText
+
+two:
+  original_name: 
+  file_name: 
+  profile: 
+  image_data: MyText
