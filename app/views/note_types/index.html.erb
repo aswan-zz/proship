@@ -1,12 +1,16 @@
+<% if notice %>
 <p id="notice"><%= notice %></p>
-
-<h1>Listing Note Types</h1>
-
+<% end %>
+          <div id="body_note_types" class="body_column one_hundred">
+            <div class="column_header">Listing Note Types</div>
+            <div class="body_column_content">
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th colspan="3"></th>
+      <th>Icon</th>
+      <th>Default Color</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -14,14 +18,23 @@
     <% @note_types.each do |note_type| %>
       <tr>
         <td><%= note_type.name %></td>
-        <td><%= link_to 'Show', note_type %></td>
-        <td><%= link_to 'Edit', edit_note_type_path(note_type) %></td>
-        <td><%= link_to 'Destroy', note_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><i class="<%= note_type.icon %>" style="color: <%= note_type.default_color %>"></i></td>
+        <td><%= note_type.default_color %></td>
+        <td><%= link_to '', edit_note_type_path(note_type), 
+        	class: "fa fa-pencil", alt: "Edit note", title: "Edit note" %></td>
+        <td><%= link_to '', note_type, method: :delete, 
+        	class: "fa fa-times", alt: "Delete note", title: "Delete note",
+        	data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<!-- fa-trash  -->
 <br>
 
-<%= link_to 'New Note type', new_note_type_path %>
+<%= link_to 'New Note type', new_note_type_path, class: "new_button" %>
+            	
+            </div>
+          </div>
+
+

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chair_id: 
+  room_id: 
+  rank_id: 
+  start_date: 2017-03-12
+  end_date: 2017-03-12
+  job_number: 1
+
+two:
+  chair_id: 
+  room_id: 
+  rank_id: 
+  start_date: 2017-03-12
+  end_date: 2017-03-12
+  job_number: 1

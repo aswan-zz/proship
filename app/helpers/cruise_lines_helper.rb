@@ -1,0 +1,2 @@
+module CruiseLinesHelper
+end

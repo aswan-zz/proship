@@ -28,7 +28,7 @@ class NoteTypesController < ApplicationController
 
     respond_to do |format|
       if @note_type.save
-        format.html { redirect_to @note_type, notice: 'Note type was successfully created.' }
+        format.html { redirect_to note_types_path, notice: 'Note type was successfully created.' }
         format.json { render :show, status: :created, location: @note_type }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class NoteTypesController < ApplicationController
   def update
     respond_to do |format|
       if @note_type.update(note_type_params)
-        format.html { redirect_to @note_type, notice: 'Note type was successfully updated.' }
+        format.html { redirect_to note_types_path, notice: 'Note type was successfully updated.' }
         format.json { render :show, status: :ok, location: @note_type }
       else
         format.html { render :edit }
@@ -60,7 +60,7 @@ class NoteTypesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_note_type
@@ -69,6 +69,6 @@ class NoteTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_type_params
-      params.require(:note_type).permit(:name)
+      params.require(:note_type).permit(:name, :icon, :default_color)
     end
 end

@@ -1,11 +1,12 @@
 
           <div id="body_register" class="body_column">
-            <div class="column_header">Edit profile</div>
+            <div class="column_header">
+            	Edit profile
+            	<%= link_to '', @member, class: "fa fa-times", alt: "Close", title: "Close" %>
+            </div>
             <div class="body_column_content" id="candidate_form">
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @member %> |
 
 			</div>
           </div>

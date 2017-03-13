@@ -15,3 +15,6 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery-fileupload/basic-plus
+//= require jquery-ui
+//= require jquery.maskedinput.min
+

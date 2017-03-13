@@ -3,8 +3,11 @@ class CountriesController < ApplicationController
 
   # GET /countries
   # GET /countries.json
-  def index
-    @countries = Country.all
+  def index  
+    respond_to do |format|
+      format.html { @countries = Country.all }
+      format.json { @countries = Country.search(params[:term]) }
+    end
   end
 
   # GET /countries/1

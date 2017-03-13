@@ -1,21 +1,21 @@
 
 <strong>Notes History</strong>
 <div id="note_types">
-  <% NoteType.all.each do |note_types| %>
-    <div class="note_type"><%= note_types.name %></div>
+  <% NoteType.all.each do |n| %>
+    <div class="note_type"><i class="<%= n.icon %>"></i><%= n.name %></div>
   <% end %>
 </div>
 <div id="past_notes">
 	<% @notes.each do |note| %>
 	  <div class="past_note_item">
-	    <div class="note_type_icon"><%= note.note_type.name %></div>
+	    <div class="note_type_icon"><i class="<%= note.note_type_icon %>" style="color: <%= note.note_type_default_color %>" alt="<%= note.note_type_name %>" title="<%= note.note_type_name %>"></i></div>
 	    <div class="note_content">
 	    	<%= note.content %>
 	    	<br />
 	    	<div class="note_entered_by">
 	    		Entered by 
 	    		<% if defined?(note.member_from) && (note.member_from != nil) then %>
-	    		<%= note.member_from.fist_name %> 
+	    		<%= note.member_from.first_name %> 
 	    		<% else %>
 	    		unknown 
 	    		<%end%>
@@ -23,11 +23,18 @@
 	    	</div>
 	    </div>
 	    <div class="note_actions">
-	    	<%= link_to 'Edit', edit_note_path(note), id: "edit_past_comment" %>
-			<%= link_to 'Destroy',  
+	    	<%= link_to '', edit_note_path(note), id: "edit_past_comment", class: "fa fa-pencil", alt: "Edit note", title: "Edit note" %>
+			<%= link_to '',  
 				note, method: :delete, 
-				id: "delete_past_comment" %>
+				id: "delete_past_comment",
+				class: "fa fa-times", alt: "Delete note", title: "Delete note" %>
 		</div>
 	  </div>
 	<% end %>
 </div>
+<script>
+  $(document).ready(function(){
+	$("#cand_head_red_flag .chr_number").html("<%= @grouped_types['Red Flag'].length unless @grouped_types == nil %>");
+	$("#cand_head_positive_note .chr_number").html("<%= @grouped_types['Positive Note'].length unless @grouped_types == nil %>");   
+  });
+</script>

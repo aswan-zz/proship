@@ -32,6 +32,9 @@ gem 'jquery-fileupload-rails'
 # image editing
 gem 'mini_magick'
 
+# Icons
+gem "font-awesome-rails"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

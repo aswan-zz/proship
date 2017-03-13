@@ -6,9 +6,7 @@
 	            $(document).ready(function(){
 				    $( "#new_note_div" ).load( "/notes/new" );
 				    $( document ).ajaxComplete(function( event, request, settings ) {
-				    	$("#note_member_to_id").val(<%=@member.id%>);
-				    	//$("<br/>").insertAfter("#new_note label");
-				    	
+				    	$("#note_member_to_id").val(<%=@member.id%>);				    	
 						$('#edit_past_comment').click(function (event) {
 						  var addressValue = $(this).attr("href");
 						  edit_comment( addressValue );
@@ -20,12 +18,17 @@
 						  event.preventDefault();
 						  return false;
 						});
+						$('#new_note_reset').click(function (event) {
+							//alert("done");
+							//$("#new_note")[0].reset();
+							$('#new_note').attr("action", "/notes");
+				            $('#new_note').attr("method", "POST");
+				        });
+
 					});
-					//alert()
 					if ( $( "#note_history" ).val() == "" ) {
-				    	$( "#note_history" ).load( "/notes" );
+				    	load_comments();
 					}
-					
 					$("#new_note_div").submit(function(e) {
 					    var url = $('#new_note').attr("action");;
 					    e.preventDefault();					
@@ -38,16 +41,24 @@
 				           data: $("#new_note").serialize(), 
 				           success: function(data) {
 				             $("#new_note")[0].reset();
-				             $( "#note_history" ).load( "/notes" );
+				             load_comments();
 				             $('#new_note').attr("action", "/notes");
 				             $('#new_note').attr("method", "POST");
 				           },
 				           error: function(data) {
-				           	 
+							 var jsonPretty = JSON.stringify(data, null, '\t');
+				           	 //alert(jsonPretty);
+				           	 var errorMsg = "";
+				           	 $.each( data.responseJSON, function( key, value ) {
+							   errorMsg += key + " " + value +"\n";
+							 });
+							 alert(errorMsg);
 				           }
 				         });
 					});
-					
+					function load_comments() {
+						$( "#note_history" ).load( "/members/" + <%= @member.id %> + "/notes" );
+					}
 					function edit_comment(url) {
 					    $.ajax({
 				           type: "GET",
@@ -64,7 +75,13 @@
 				             $('#new_note').attr("method", "PATCH");
 				           },
 				           error: function(data) {
-				           	 alert("There was a problem " + data);
+							 var jsonPretty = JSON.stringify(data, null, '\t');
+				           	 //alert(jsonPretty);
+				           	 var errorMsg = "";
+				           	 $.each( data.responseJSON, function( key, value ) {
+							   errorMsg += key + " " + value +"\n";
+							 });
+							 alert(errorMsg);
 				           }
 				         });
 					}
@@ -77,10 +94,15 @@
 							 var jsonPretty = JSON.stringify(data, null, '\t');
 			           		 //alert("Made it" + jsonPretty);
 			               	 $( "#note_history" ).load( "/notes" );
-			               	 alert("Delete done");
 				           },
 				           error: function(data) {
-				           	 alert("There was a problem " + data);
+							 var jsonPretty = JSON.stringify(data, null, '\t');
+				           	 //alert(jsonPretty);
+				           	 var errorMsg = "";
+				           	 $.each( data.responseJSON, function( key, value ) {
+							   errorMsg += key + " " + value +"\n";
+							 });
+							 alert(errorMsg);
 				           }
 				         });
 					}

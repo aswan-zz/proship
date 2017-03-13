@@ -18,7 +18,7 @@
     <%= f.hidden_field :member_to_id %>
   	<div class="actions">
       <%= button_tag "✓ Save", name: "save_note" %>
-      <%= button_tag "X Clear", type: :reset %>
+      <%= button_tag "X Clear", type: :reset, id: "new_note_reset" %>
     </div>
   </div>
   <div id="note_type" class="field form_inline">
@@ -27,7 +27,9 @@
     							 :note_type_id, 
     							 NoteType.all, 
     							 :id, 
-    							 :name)
-	%>		
+    							 :icon_and_text) do |b|
+	%>
+		<div class="note_type_buttons"><%= b.label { b.radio_button + " " + b.text } %></div>
+	<% end %>
   </div>
 <% end %>

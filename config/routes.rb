@@ -1,10 +1,24 @@
 Rails.application.routes.draw do
+  resources :contracts
+  resources :contract_statuses
+  resources :gigs
+  resources :ranks
+  resources :chairs
+  resources :rooms
+  resources :ships
+  resources :cruise_lines
+  resources :availabilities
+  resources :availability_types
+  resources :airports
   resources :state_provs
   resources :countries
   resources :notes
   resources :note_types
   resources :photos
   resources :members
+  
+  get 'members/:id/notes' => 'notes#member_notes'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

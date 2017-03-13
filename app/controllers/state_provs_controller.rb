@@ -4,7 +4,11 @@ class StateProvsController < ApplicationController
   # GET /state_provs
   # GET /state_provs.json
   def index
-    @state_provs = StateProv.all
+    #@state_provs = StateProv.all
+    respond_to do |format|
+      format.html { @state_provs = StateProv.all }
+      format.json { @state_provs = StateProv.search(params[:term]) }
+    end
   end
 
   # GET /state_provs/1

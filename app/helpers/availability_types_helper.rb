@@ -1,0 +1,2 @@
+module AvailabilityTypesHelper
+end

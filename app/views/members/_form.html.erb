@@ -26,11 +26,19 @@
 			  </div>
 			  <div class="field">
 			    <%= f.label :birthday %><br>
-			    <%= f.date_select :birthday %>
+			    <%= f.date_select :birthday, :start_year=>1900 %>
 			  </div>
 			  <div class="field">
 			    <%= f.label :email %><br>
 			    <%= f.text_field :email %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :main_phone %><br>
+			    <%= f.text_field :main_phone %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :main_mobile %><br>
+			    <%= f.text_field :main_mobile %>
 			  </div>
 			  <div class="field">
 			    <%= f.label :address %><br>
@@ -42,11 +50,15 @@
 			  </div>
 			  <div class="field">
 			    <%= f.label :state_prov %><br>
-			    <%= f.number_field :state_prov %>
+			    <%= f.text_field :state_prov_id,
+			    	value:  (@member.state_prov.name unless @member.state_prov == nil) %>
+			    <div class="results" id="state-search-results"></div>
 			  </div>
 			  <div class="field">
 			    <%= f.label :country %><br>
-			    <%= f.number_field :country %>
+			    <%= f.text_field :country_id, 
+			    	value: (@member.country.name unless @member.country == nil) %>
+			    <div class="results" id="country-search-results"></div>
 			  </div>
 			  <div class="field">
 			    <%= f.label :zip_post %><br>
@@ -55,14 +67,19 @@
 			  <div class="field">
 			    <%= f.label :home_airport %><br>
 			    <%= f.text_field :home_airport %>
+			    <div class="results" id="airport-search-results"></div>
 			  </div>
 			  <div class="field">
 			    <%= f.label :residency %><br>
-			    <%= f.number_field :residency %>
+			    <%= f.text_field :residency_id, 
+			    	value: (@member.residency.name unless @member.residency == nil) %>
+			    <div class="results" id="residency-search-results"></div>
 			  </div>
 			  <div class="field">
 			    <%= f.label :citizenship %><br>
-			    <%= f.number_field :citizenship %>
+			    <%= f.text_field :citizenship_id, 
+			    	value: (@member.citizenship.name unless @member.citizenship == nil) %>
+			    <div class="results" id="citizenship-search-results"></div>
 			  </div>
 			  <div class="field">
 			    <%= f.label :medical_conditions %><br>
@@ -79,5 +96,15 @@
 			  <div class="actions">
 			    <%= f.submit %>
 			  </div>
-
+<script>
+  $(function() {
+    new app.Countries;
+    new app.StateProv;
+    new app.Airport;
+    new app.Residency;
+    new app.Citizenship;
+  });
+  $("#member_main_phone").mask("(999) 999-9999");
+  $("#member_main_mobile").mask("(999) 999-9999");
+</script>
 <% end %>

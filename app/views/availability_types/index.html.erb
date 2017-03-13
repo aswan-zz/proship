@@ -1,0 +1,38 @@
+          <div id="body_availability_types" class="body_column one_hundred">
+            <div class="column_header">
+            	Listing Availability Types
+            </div>
+            <div class="body_column_content" id="availability_types_form">
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Icon</th>
+      <th>Default color</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @availability_types.each do |availability_type| %>
+      <tr>
+        <td><%= availability_type.name %></td>
+        <td><i class="<%= availability_type.icon %>" style="color: <%= availability_type.default_color %>"></i></td>
+        <td><%= availability_type.default_color %></td>
+        <td><%= link_to '', edit_availability_type_path(availability_type), 
+        	class: "fa fa-pencil", alt: "Edit availability type", 
+        	title: "Edit availability type" %></td>
+        <td><%= link_to '', availability_type, method: :delete, 
+        	class: "fa fa-times", alt: "Delete availability type", 
+        	title: "Delete availability type",
+        	data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'New Availability type', new_availability_type_path, class: "new_button" %>
+			</div>
+		</div>
+			
+			

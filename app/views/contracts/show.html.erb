@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Gig:</strong>
+  <%= @contract.gig %>
+</p>
+
+<p>
+  <strong>Salary:</strong>
+  <%= @contract.salary %>
+</p>
+
+<p>
+  <strong>Contract status:</strong>
+  <%= @contract.contract_status %>
+</p>
+
+<%= link_to 'Edit', edit_contract_path(@contract) %> |
+<%= link_to 'Back', contracts_path %>

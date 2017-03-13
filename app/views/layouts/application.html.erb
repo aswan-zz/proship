@@ -42,7 +42,7 @@
       <div id="body_left_col">
         <div class="body_column one_hundred">
           <div class="left_title">More results</div>
-          <div class="left_title_underline"><img src="left_col_underline.png"/></div>
+          <div class="left_title_underline"><%= image_tag "left_col_underline" %></div>
           <div>
             <ol>
               <li>Essentials</li>
@@ -53,7 +53,7 @@
         </div>
         <div class="body_column one_hundred">
           <div class="left_title">Quick links</div>
-          <div class="left_title_underline"><img src="left_col_underline.png"/></div>
+          <div class="left_title_underline"><%= image_tag "left_col_underline" %></div>
           <div>
             <ul>
               <li>Essentials</li>
@@ -65,6 +65,22 @@
       </div>
       <div id="body_main_col">
         <div id="body_center_col">
+<div id="notice">
+	<div class="one_hundred">
+		<i class="fa fa-times"></i>
+	</div>
+	<p><%= notice %></p>
+</div>
+<% if notice %>
+	<script>
+	$("#notice").slideDown();
+	$("#notice .one_hundred .fa-times").click(function(){
+		$("#notice").slideUp();
+	});
+	</script>
+<% end %>
+
+        	
 <%= yield %>
         </div>
         <div id="body_right_col">

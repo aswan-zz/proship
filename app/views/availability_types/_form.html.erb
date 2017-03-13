@@ -1,0 +1,29 @@
+<%= form_for(@availability_type) do |f| %>
+  <% if @availability_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@availability_type.errors.count, "error") %> prohibited this availability_type from being saved:</h2>
+
+      <ul>
+      <% @availability_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :icon %><br>
+    <%= f.text_field :icon %>
+  </div>
+  <div class="field">
+    <%= f.label :default_color %><br>
+    <%= f.text_field :default_color %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

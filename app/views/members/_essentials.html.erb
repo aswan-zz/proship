@@ -4,47 +4,64 @@
             </div>
             <div class="body_column_content">
 <p>
-  <em>Email:</em>
+  <em>Main Phone</em>
+  <span class="candidate_info"><%= number_to_phone(@member.main_phone, area_code: true) %></span>
+</p>
+
+<p>
+  <em>Main Mobile *</em>
+  <span class="candidate_info"><%= number_to_phone(@member.main_mobile, area_code: true) %></span>
+</p>
+
+<p>
+  <em>Email</em>
   <span class="candidate_info"><%= @member.email %></span>
 </p>
 
 <p>
-  <em>Birthday:</em>
-  <span class="candidate_info"><%= @member.birthday %></span>
-</p>
-
-<p>
-  <em>Address:</em>
+  <em>Address</em>
   <span class="candidate_info"><%= @member.address %>
-  	<br/><%= @member.city %>, <%= @member.state_prov %>, <%= @member.country %>
+  	<br/><%= @member.city %>, 
+  		<%= @member.state_prov.name unless @member.state_prov == nil %>, 
+  		<%= @member.country.name unless @member.country == nil %>
   	<br/><%= @member.zip_post %>
   </span>
 </p>
 
 <p>
-  <em>Home airport:</em>
+  <em>Residency</em>
+  <span class="candidate_info"><%= @member.residency.name unless @member.residency == nil %></span>
+</p>
+
+<p>
+  <em>Citizenship</em>
+  <span class="candidate_info"><%= @member.citizenship.name  unless @member.citizenship == nil %></span>
+</p>
+
+<p>
+  <em>Birthday</em>
+  <span class="candidate_info"><%= @member.birthday %></span>
+</p>
+
+<p>
+  <em>Home airport</em>
   <span class="candidate_info"><%= @member.home_airport %></span>
 </p>
 
 <p>
-  <em>Medical conditions:</em>
+  <em>Medical conditions</em>
   <span class="candidate_info"><%= @member.medical_conditions %></span>
 </p>
 
 <p>
-  <em>Criminal convictions:</em>
+  <em>Criminal convictions</em>
   <span class="candidate_info"><%= @member.criminal_convictions %></span>
 </p>
 
 <p>
-  <em>Residency:</em>
-  <span class="candidate_info"><%= @member.residency %></span>
+  <em>Employee number</em>
+  <span class="candidate_info"><%= @member.employee_number %></span>
 </p>
 
-<p>
-  <em>Citizenship:</em>
-  <span class="candidate_info"><%= @member.citizenship %></span>
-</p>
-            	
             </div>
           </div>

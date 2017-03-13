@@ -9,11 +9,15 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
+ * fa-snowflake-o
  *
  *= require_tree .
  *= require_self
+ *= require jquery-ui/datepicker
  *= require jquery.fileupload
  *= require jquery.fileupload-ui
+ *= require font-awesome
+ *
  * 
  */
 body {
@@ -100,10 +104,28 @@ body {
   height: 100%;
   display: flex;
 }
+#notice {
+  display: none; 
+  min-height: 60px;
+  background: #27B3D5;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  padding: 4px;
+}
+#notice p {
+  margin: 8px;
+}
+#notice .one_hundred i {
+  float: right;
+  font-size: 10pt;
+  color: white;
+  cursor: pointer;
+}
 #body_left_col {
-  width: 156px;
+  width: 196px;
   background: #3d3f44;
   padding: 20px;
+  box-sizing: border-box;
 }
 #body_main_col {
   height: inherit;
@@ -112,13 +134,18 @@ body {
   float: right;
 }
 #body_center_col {
-  width: 750px;
+  width: 774px;
   float: left;
   height: inherit;
+  box-sizing: border-box;
   padding: 8px;
+}
+#profile_row_one {
+  float: left;
 }
 #body_right_col {
   width: 210px;
+  box-sizing: border-box;
   height: inherit;
   float: left;
   padding: 8px 8px 0px 0px;
@@ -126,7 +153,7 @@ body {
 .right_col_btn {
   background: #0f6597;
   margin-bottom: 8px;
-  width: 210px;
+  width: 100%;
   height: 40px;
 }
 .body_column {
@@ -162,39 +189,50 @@ body {
   background: #3d3f44;
 }
 #body_center_col .body_column_content {
-  font: italic 6pt arial, sans-serif; 
+  font: italic 7pt arial, sans-serif; 
 
 }
 #body_essentials {
   width: 299px;
   float: left;
 }
+#body_essentials .body_column_content {
+  padding-top: 4px;
+}
 #body_essentials p {
-  color: #3d3f44;
+  color: #7d7f84;
   border-bottom: 1px solid;
-  padding: 0px 0px 8px 0px;
-  font: italic 6pt arial, sans-serif; 
+  padding: 6px 0px 8px 0px;
+  font: italic bold 6pt arial, sans-serif; 
   width: 100%; 
   min-height: 14px;
 }
 #body_essentials p .candidate_info {
+  color: #3d3f44;
   margin-left: 100px;
   font-weight: bold;
   display: block;
+  font: italic bold 7pt arial, sans-serif; 
 }
 #body_essentials p em {
   position: absolute;
 }
 #body_notes {
-  width: 444px;
+  width: 452px;
   float: left;
+  box-sizing: border-box;
 }
-
+#body_notes strong {
+  margin-bottom: 10px;
+  float:left;
+  font: italic bold 7.5pt arial, sans-serif;
+  color: #5d5f64;
+}
 #candidate_header {
   width: 100%;
   background: #303b49;
   color: white;
-  font: 0.6em arial, sans-serif;
+  font: 7pt arial, sans-serif;
   display: flex;
 }
 #candidate_photo {
@@ -240,6 +278,10 @@ body {
   padding: 0 10px 0 10px;
   width: 30px;
 }
+#cand_head_red_flag {
+  box-sizing: border-box;
+  padding: 0 8px 0 8px;
+}
 .chr_number {
   font: bold 1.4em arial, sans-serif;
 }
@@ -254,12 +296,12 @@ body {
 }
 #body_left_col .body_column ul, #body_left_col .body_column ol {
   color: #a5a6a7;
-  font: 0.6em arial, sans-serif;
+  font: 7pt arial, sans-serif;
   padding: 0;
   list-style-position: inside;
 }
 #body_left_col .body_column ul {
-  font: 0.7em arial, sans-serif;
+  font: 8pt arial, sans-serif;
   list-style-type: none;
 }
 #body_left_col .body_column li {
@@ -276,41 +318,19 @@ body {
 .field {
   -webkit-flex: 1 auto;
   flex: 1 auto;
-  margin-right: 20px;
+  margin-right: 18px;
   color: #22272D;
 }
-#body_register .field:nth-child(2n) {
-  width: 400px;
-}
-#body_register .field:nth-child(3n) {
+#body_register {
   width: 500px;
 }
-#body_register .field:nth-child(4n) {
-  width: 500px;
+#body_register .column_header a {
+  float: right;
+  padding-right: 14px;
+  line-height: 48px;
 }
-#body_register .field:nth-child(5n) input {
-  width: 400px;
-}
-#body_register .field:nth-child(6n) input {
-  width: 400px;
-}
-#body_register .field:nth-child(7n) input {
-  width: 260px;
-}
-#body_register .field:nth-child(10n), .field:nth-child(10n) input {
-  width: 120px;
-}
-#body_register .field:nth-child(13n), .field:nth-child(13n) input {
-  width: 400px;
-}
-#body_register .field:nth-child(14n), .field:nth-child(14n) textarea, .field:nth-child(15n), .field:nth-child(15n) textarea {
-  width: 400px;
- }
-#body_register .field:nth-child(14n) textarea, .field:nth-child(15n) textarea {
-  height: 60px;
-}
-#body_register .field:nth-child(17n) {
-  width: 100%;
+#body_register .body_column_content {
+  padding-top: 10px;
 }
 .body_column_content th, .body_column_content td {
   font: 6pt arial, sans-serif;
@@ -325,7 +345,7 @@ body {
   margin-right: 20px;
 }
 #note_content_div {
-  width: 260px;
+  width: 264px;
   float: left;
 }
 #body_notes .body_column_content, #body_notes .body_column_content #new_note_div {
@@ -336,17 +356,18 @@ body {
   padding-top: 10px;
 }
 #note_content {
-  width: 254px;
+  width: inherit;
 }
 #note_type {
-  width: 100px;
+  width: 110px;
   float: left;
 }
 #note_type input {
 }
 #new_note .actions {
   display: block;
-  width: 260px;
+  width: inherit;
+  float: left;
 }
 #new_note .actions input, #new_note .actions button {
   float: right;
@@ -354,30 +375,38 @@ body {
 #note_history {
   float:left;
   font-weight: bold;
+  padding-bottom: 10px;
 }
 #note_types .note_type {
-  width: 80px;
-  color: black;
+  color: #5d5f64;
   float: left;
+  padding: 1px 20px 1px 0px;
+}
+#note_types .note_type i {
+  font-size: 1.4em;
+  padding-right: 4px;
 }
 #past_notes {
   overflow: auto;
-  height: 120px;
+  height: 226px;
   float: left;
   margin-top: 10px;
   background: white;
   color: black;
   padding: 12px;
+  box-sizing: border-box;
 }
 .past_note_item, .note_type_icon, .note_content, .note_actions {
   float:left;
 }
 .note_type_icon {
   width: 40px;
+  font-size: 14pt;
 }
 .note_content {
-  width: 260px;
-  padding-bottom: 12px;
+  width: 250px;
+  padding: 0px 5px 12px 5px;
+  box-sizing: border-box;
   border-bottom: 1px solid black;
 }
 .note_actions {
@@ -390,8 +419,9 @@ body {
 .note_entered_by {
   color: #c1c4ca;
   font: 6pt arial, sans-serif;
+  margin-top: 6px;
 }
-button {
+button, .new_button {
   color: white;
   background: #27b3d5;
   border: none;
@@ -400,8 +430,139 @@ button {
   height: 22px;
   margin: 5px 0px 0px 5px;
 }
+.new_button {
+  line-height: 24px;
+  height: 30px;
+}
 button[type="reset"] {
   background: grey;
   padding-top: 4px;
 }
-	
+#note_history strong {
+  display: block;
+  width: 100%;
+}
+#note_type .note_type_buttons {
+  float:left;
+  width: inherit;
+  line-height: 16pt;
+  color: #5d5f64;
+}
+#note_type .note_type_buttons i {
+  font-size: 1.1em;
+  padding: 0 3px 0 2px;
+}
+input[type=radio] {
+    width: 7pt;
+    height: 7pt;
+}
+#country-search-results {
+  position: absolute;
+  z-index: 999;
+}
+#state-search-results {
+  position: absolute;
+  z-index: 998;  
+}
+
+.results .ui-widget-content {
+  background: #fff;
+  font-size: 9pt;
+  padding: .5em 0;
+  border-color: #ddd;
+  box-shadow: 0 .1em .2em rgba(187, 187, 187, 0.64);
+  line-height: 1.2;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.results .ui-menu-item {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  padding: .4em .6em .4em .2em;
+  position: relative;
+  border: 0;
+  border-left: 5px solid transparent;
+  position: relative;
+}
+#body_note_types .body_column_content th, #body_note_types .body_column_content td, #body_availability_types .body_column_content th , #body_availability_types .body_column_content td{
+  font: bold 10pt Arial, sans-serif;
+  margin: 3px;
+  padding: 3px 10px 3px 10px;
+  border-bottom: 1px solid #5D5F64;
+  text-align: left;
+}
+#body_note_types .body_column_content, #body_availability_types .body_column_content {
+  padding-top: 16px;
+}
+#body_note_types .fa, #body_availability_types .fa {
+  color: #67698a;
+}
+#body_note_types i.fa, #body_availability_types i.fa {
+  font-size: 1.5em;
+}
+.note_actions a {
+  font-size: 10pt;
+  color: #7d7f84;
+  text-decoration: none;
+  margin-left: 8px;
+}
+.fa {
+  text-decoration: none;	
+}
+.column_header .edit a.fa {
+  font-size: 1.2em;
+  color: white;
+}
+.button_group {
+  width: 236px;
+}
+.availability_type_button {
+  width: 110px;
+  height: 26px;
+  color: white;
+  font-size: 7pt;
+  padding-top: 8px;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 4px;
+  float: left;
+  cursor: pointer;
+}
+.availability_type_button i.fa {
+  margin-right: 3px;
+}
+#new_availability .start_date, #new_availability .end_date {
+  float: left;
+  width: 116px;
+  line-height: 16px;
+  margin-right: 8px;
+}
+#availability_comment {
+  width: 236px;
+  height: 60px;
+}
+#new_availability .start_end_date, #new_availability .comment {
+  float: left;
+  width: 100%;
+}
+#ui-datepicker-div {
+  width: 190px;
+}
+#start_end_date i.fa {
+    width: 20px;
+    height: 14px;
+    font-size: 16px;
+    color: #CCCCCC;
+    z-index: 38;
+    position: relative;
+	top: -19px;
+    left: 92px;
+}
+#start_end_date input {
+  width: 110px;
+  margin-right: 6px;
+}
+#new_availability .actions {
+  float: left;
+  width: 100%;
+}

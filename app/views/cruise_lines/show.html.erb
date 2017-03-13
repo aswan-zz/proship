@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cruise_line.name %>
+</p>
+
+<p>
+  <strong>Short name:</strong>
+  <%= @cruise_line.short_name %>
+</p>
+
+<%= link_to 'Edit', edit_cruise_line_path(@cruise_line) %> |
+<%= link_to 'Back', cruise_lines_path %>

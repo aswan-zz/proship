@@ -1,4 +1,12 @@
           <div id="body_availability" class="body_column one_hundred">
-            <div class="column_header">Availability</div>
-            <div class="body_column_content"></div>
+            <div class="column_header">Availability
+            	<div class="edit"><%= link_to '', new_availability_path, class: "fa fa-pencil" %></div>
+            </div>
+            <div class="body_column_content">
+            	
+            	<div id="new_availability_div">
+            		<%= render new_availability_path %>
+        		</div>
+            	
+            </div>
           </div>
