@@ -1,9 +1,10 @@
-class ShipsController < ApplicationController
+class ShipsController < AuthenticationController
   before_action :set_ship, only: [:show, :edit, :update, :destroy]
 
   # GET /ships
   # GET /ships.json
   def index
+    @back_link = admin_path
     @ships = Ship.all
   end
 

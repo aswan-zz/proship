@@ -1,9 +1,10 @@
-class RoomsController < ApplicationController
+class RoomsController < AuthenticationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   # GET /rooms
   # GET /rooms.json
   def index
+    @back_link = admin_path
     @rooms = Room.all
   end
 

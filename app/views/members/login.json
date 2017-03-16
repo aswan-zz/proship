@@ -1,0 +1,6 @@
+{
+	{
+		status:OK,
+		url:<%=edit_member_path(:id)%>
+	}
+}

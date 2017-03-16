@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313022659) do
+ActiveRecord::Schema.define(version: 20170316003354) do
 
   create_table "airports", force: :cascade do |t|
     t.string   "name"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20170313022659) do
     t.integer  "availability_type_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "member_id"
+    t.integer  "creator_id"
   end
 
   add_index "availabilities", ["availability_type_id"], name: "index_availabilities_on_availability_type_id"
@@ -107,6 +109,36 @@ ActiveRecord::Schema.define(version: 20170313022659) do
   add_index "gigs", ["rank_id"], name: "index_gigs_on_rank_id"
   add_index "gigs", ["room_id"], name: "index_gigs_on_room_id"
 
+  create_table "meeting_members", force: :cascade do |t|
+    t.integer  "member_id"
+    t.integer  "meeting_id"
+    t.string   "role"
+    t.string   "accepted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "meeting_members", ["meeting_id"], name: "index_meeting_members_on_meeting_id"
+  add_index "meeting_members", ["member_id"], name: "index_meeting_members_on_member_id"
+
+  create_table "meeting_types", force: :cascade do |t|
+    t.string   "name"
+    t.string   "icon"
+    t.string   "default_color"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.integer  "meeting_type_id"
+    t.datetime "scheduled"
+    t.text     "note"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "meetings", ["meeting_type_id"], name: "index_meetings_on_meeting_type_id"
+
   create_table "members", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -128,7 +160,22 @@ ActiveRecord::Schema.define(version: 20170313022659) do
     t.datetime "updated_at",                      null: false
     t.string   "main_phone",           limit: 30
     t.string   "main_mobile",          limit: 30
+    t.string   "password"
+    t.integer  "role_id"
+    t.string   "fakepass"
   end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "member_to_id"
+    t.integer  "member_from_id"
+    t.text     "note"
+    t.integer  "parent"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "messages", ["member_from_id"], name: "index_messages_on_member_from_id"
+  add_index "messages", ["member_to_id"], name: "index_messages_on_member_to_id"
 
   create_table "note_types", force: :cascade do |t|
     t.string   "name"
@@ -164,6 +211,33 @@ ActiveRecord::Schema.define(version: 20170313022659) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reminder_types", force: :cascade do |t|
+    t.string   "name"
+    t.string   "icon"
+    t.string   "default_color"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "reminders", force: :cascade do |t|
+    t.integer  "member_id"
+    t.integer  "reminder_type_id"
+    t.string   "note"
+    t.datetime "schedule"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "reminders", ["member_id"], name: "index_reminders_on_member_id"
+  add_index "reminders", ["reminder_type_id"], name: "index_reminders_on_reminder_type_id"
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "permissions"
   end
 
   create_table "rooms", force: :cascade do |t|

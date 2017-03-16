@@ -1,4 +1,4 @@
-class NotesController < ApplicationController
+class NotesController < AuthenticationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
   layout false
 
@@ -50,7 +50,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to 'index', notice: 'Note was successfully created.' }
+        format.html { redirect_to notes_path, notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new }
@@ -64,7 +64,7 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to 'index', notice: 'Note was successfully updated.' }
+        format.html { redirect_to notes_path, notice: 'Note was successfully updated.' }
         format.json { render :show, status: :ok, location: @note }
       else
         format.html { render :edit }
@@ -76,6 +76,7 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
+    id = @note.member_to_id
     @note.destroy
     respond_to do |format|
       format.html { redirect_to notes_url, notice: 'Note was successfully destroyed.' }

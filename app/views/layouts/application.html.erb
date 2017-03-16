@@ -30,12 +30,13 @@
       </div>
       <div id="head_back_btn">
       	<% if defined? @back_link %>
-        <%= link_to '<', @back_link %>
+        <%= link_to @back_link do %><i class="fa fa-chevron-left"></i><% end %>
         <% else %>
-        &lt;
+        <i class="fa fa-chevron-left"></i>
         <% end %>
       </div>
       <div id="head_menu">
+      	<%= render "/layouts/header" %>
       </div>
     </div>
     <div id="body">

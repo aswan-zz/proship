@@ -1,0 +1,10 @@
+<% @availabilities.each do |a| %>
+	<div class="availability_item">
+		<i class="<%= a.av_type_icon %>" 
+			style="background: <%= a.av_type_default_color %>"></i><%= a.av_type_name %> 
+			from <%= a.start_date %> to <%= a.end_date %>
+		<% if a.comment %>
+		 - <%= a.comment %>
+		<% end %>
+	</div>
+<% end %>

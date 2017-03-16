@@ -22,6 +22,8 @@
 	  </div>
   </div>
   <div class="field comment">
+  	<%= f.hidden_field :member_id %>
+  	<%= f.hidden_field :creator_id %>
     <%= f.label :comment %><br>
     <%= f.text_area :comment %>
   </div>
@@ -30,8 +32,9 @@
 	    <%= f.label :availability_type_id %><br>
 	    <%= f.hidden_field :availability_type_id %>
 	    <% AvailabilityType.all.each do |a| %>
-	    	<a onclick="$('#availability_availability_type_id').val(<%= a.id %>);" 
-	    		class="availability_type_button" style="background: <%= a.default_color %>;">
+	    	<a id="<%= a.id %>" 
+	    		class="availability_type_button" 
+	    		style="background: <%= a.default_color %>;">
 	    		<i class="<%= a.icon %>"></i><%= a.name %>
 			</a>
 	    <% end %>
@@ -42,6 +45,10 @@
   </div>
 <% end %>
 <script>
-	$('#new_availability .start_date input').datepicker({});
-	$('#new_availability .end_date input').datepicker({});
+	$('#new_availability .start_date input').datepicker({
+		format: 'yyyy/mm/dd'
+	});
+	$('#new_availability .end_date input').datepicker({
+		format: 'yyyy/mm/dd',
+	});
 </script>

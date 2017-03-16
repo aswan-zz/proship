@@ -34,7 +34,11 @@
 </div>
 <script>
   $(document).ready(function(){
-	$("#cand_head_red_flag .chr_number").html("<%= @grouped_types['Red Flag'].length unless @grouped_types == nil %>");
-	$("#cand_head_positive_note .chr_number").html("<%= @grouped_types['Positive Note'].length unless @grouped_types == nil %>");   
+  	<% if @grouped_types != nil && @grouped_types['Red Flag'] != nil %>
+	$("#cand_head_red_flag .chr_number").html("<%= @grouped_types['Red Flag'].length %>");
+	<% end %>
+  	<% if @grouped_types != nil && @grouped_types['Positive Note'] != nil %>
+	$("#cand_head_positive_note .chr_number").html("<%= @grouped_types['Positive Note'].length %>");   
+	<% end %>
   });
 </script>

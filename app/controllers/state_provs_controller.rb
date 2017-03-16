@@ -1,9 +1,10 @@
-class StateProvsController < ApplicationController
+class StateProvsController < AuthenticationController
   before_action :set_state_prov, only: [:show, :edit, :update, :destroy]
 
   # GET /state_provs
   # GET /state_provs.json
   def index
+    @back_link = admin_path
     #@state_provs = StateProv.all
     respond_to do |format|
       format.html { @state_provs = StateProv.all }

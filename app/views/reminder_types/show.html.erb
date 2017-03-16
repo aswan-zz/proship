@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @reminder_type.name %>
+</p>
+
+<p>
+  <strong>Icon:</strong>
+  <%= @reminder_type.icon %>
+</p>
+
+<p>
+  <strong>Default color:</strong>
+  <%= @reminder_type.default_color %>
+</p>
+
+<%= link_to 'Edit', edit_reminder_type_path(@reminder_type) %> |
+<%= link_to 'Back', reminder_types_path %>

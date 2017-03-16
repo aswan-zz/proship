@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :messages
+  resources :reminders
+  resources :reminder_types
+  resources :meeting_members
+  resources :meetings
+  resources :meeting_types
+  resources :roles
   resources :contracts
   resources :contract_statuses
   resources :gigs
@@ -17,7 +24,14 @@ Rails.application.routes.draw do
   resources :photos
   resources :members
   
-  get 'members/:id/notes' => 'notes#member_notes'
+  get '/', to: 'members#home', as: 'home'
+  get '/admin', to: 'members#admin', as: 'admin'
+  get '/logout', to: 'members#logout', as: 'logout'
+  post '/login', to: 'members#login', as: 'login'
+  post '/register' => 'members#register', as: 'register'
+  
+  get 'members/:id/notes' => 'notes#member_notes', as: 'member_notes'
+  get 'members/:id/availabilities' => 'availabilities#member_availabilities', as: 'member_availabilities'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

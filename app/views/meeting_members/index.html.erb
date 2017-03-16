@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Meeting Members</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Member</th>
+      <th>Meeting</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @meeting_members.each do |meeting_member| %>
+      <tr>
+        <td><%= meeting_member.member %></td>
+        <td><%= meeting_member.meeting %></td>
+        <td><%= link_to 'Show', meeting_member %></td>
+        <td><%= link_to 'Edit', edit_meeting_member_path(meeting_member) %></td>
+        <td><%= link_to 'Destroy', meeting_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Meeting member', new_meeting_member_path %>

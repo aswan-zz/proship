@@ -19,8 +19,6 @@
 						  return false;
 						});
 						$('#new_note_reset').click(function (event) {
-							//alert("done");
-							//$("#new_note")[0].reset();
 							$('#new_note').attr("action", "/notes");
 				            $('#new_note').attr("method", "POST");
 				        });
@@ -30,7 +28,7 @@
 				    	load_comments();
 					}
 					$("#new_note_div").submit(function(e) {
-					    var url = $('#new_note').attr("action");;
+					    var url = $('#new_note').attr("action");
 					    e.preventDefault();					
 						var method = $('#new_note').attr("method");
 
@@ -90,11 +88,7 @@
 				           type: "DELETE",
 				           url: url,
 				           dataType : 'JSON',
-				           success: function(data) {
-							 var jsonPretty = JSON.stringify(data, null, '\t');
-			           		 //alert("Made it" + jsonPretty);
-			               	 $( "#note_history" ).load( "/notes" );
-				           },
+				           success: load_comments,
 				           error: function(data) {
 							 var jsonPretty = JSON.stringify(data, null, '\t');
 				           	 //alert(jsonPretty);

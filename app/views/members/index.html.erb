@@ -7,15 +7,15 @@
 <table>
   <thead>
     <tr>
-      <th>Employee number</th>
-      <th>First name</th>
-      <th>Last name</th>
+      <th>#</th>
+      <th>Email</th>
+      <th>Name</th>
       <th>City</th>
       <th>Country</th>
       <th>Home airport</th>
       <th>Residency</th>
       <th>Citizenship</th>
-      <th colspan="3"></th>
+      <th colspan="3" style="width: 60px;"></th>
     </tr>
   </thead>
 
@@ -23,16 +23,25 @@
     <% @members.each do |member| %>
       <tr>
         <td><%= member.employee_number %></td>
-        <td><%= member.first_name %></td>
-        <td><%= member.last_name %></td>
+        <td><%= member.email %></td>
+        <td><%= member.first_name %> <%= member.last_name %></td>
         <td><%= member.city %></td>
-        <td><%= member.country %></td>
-        <td><%= member.home_airport %></td>
-        <td><%= member.residency %></td>
-        <td><%= member.citizenship %></td>
-        <td><%= link_to 'Show', member %></td>
-        <td><%= link_to 'Edit', edit_member_path(member) %></td>
-        <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= member.country.name unless member.country == nil %></td>
+        <td><%= member.home_airport unless member.home_airport == nil %></td>
+        <td><%= member.residency.name unless member.residency == nil %></td>
+        <td><%= member.citizenship.name unless member.citizenship == nil %></td>
+        <td class="form_action_links">
+        	<%= link_to '', member, 
+	        	class: "fa fa-user", alt: "View member " + member.first_name.to_s, 
+	        	title: "View member " + member.first_name.to_s %>
+        	<%= link_to '', edit_member_path(member), 
+	        	class: "fa fa-pencil", alt: "Edit member " + member.first_name.to_s, 
+	        	title: "Edit member " + member.first_name.to_s %>
+        	<%= link_to '', member, method: :delete, 
+	        	class: "fa fa-times delete", alt: "Delete member " + member.first_name.to_s, 
+	        	title: "Delete member " + member.first_name.to_s,
+	        	data: { confirm: 'Are you sure?' } %>
+	    </td>
       </tr>
     <% end %>
   </tbody>
@@ -40,7 +49,7 @@
 
 <br>
 
-<%= link_to 'New Member', new_member_path %>
+<%= link_to 'New Member', new_member_path, class: "new_button" %>
 
             </div>
           </div>

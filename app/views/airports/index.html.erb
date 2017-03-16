@@ -1,6 +1,11 @@
+<% if notice %>
 <p id="notice"><%= notice %></p>
-
-<h1>Listing Airports</h1>
+<% end %>
+          <div id="types_table" class="body_column one_hundred">
+            <div class="column_header">
+            	Listing Airports
+            </div>
+            <div class="body_column_content" id="availability_types_form">
 
 <table>
   <thead>
@@ -42,4 +47,7 @@
 
 <br>
 
-<%= link_to 'New Airport', new_airport_path %>
+<%= link_to 'New Airport', new_airport_path, class: "new_button" %>
+
+</div>
+</div>

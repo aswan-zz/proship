@@ -1,4 +1,4 @@
-class GigsController < ApplicationController
+class GigsController < AuthenticationController
   before_action :set_gig, only: [:show, :edit, :update, :destroy]
 
   # GET /gigs

@@ -1,4 +1,4 @@
-class ChairsController < ApplicationController
+class ChairsController < AuthenticationController
   before_action :set_chair, only: [:show, :edit, :update, :destroy]
 
   # GET /chairs

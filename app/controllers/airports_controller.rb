@@ -1,11 +1,12 @@
-class AirportsController < ApplicationController
+class AirportsController < AuthenticationController
   before_action :set_airport, only: [:show, :edit, :update, :destroy]
 
   # GET /airports
   # GET /airports.json
   def index
+    @back_link = admin_path
     respond_to do |format|
-      format.html { @airports = Airport.all }
+      format.html { @airports = Airport.limit(30).all }
       format.json { @airports = Airport.search(params[:term]) }
     end
   end

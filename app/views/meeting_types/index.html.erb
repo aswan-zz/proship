@@ -1,0 +1,41 @@
+
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+          <div id="types_table" class="body_column one_hundred">
+            <div class="column_header">Listing Meeting Types</div>
+            <div class="body_column_content">
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Icon</th>
+      <th>Default Color</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @meeting_types.each do |meeting_type| %>
+      <tr>
+        <td><%= meeting_type.name %></td>
+        <td><i class="<%= meeting_type.icon %>" style="color: <%= meeting_type.default_color %>"></i></td>
+        <td><%= meeting_type.default_color %></td>
+        <td><%= link_to '', edit_meeting_type_path(meeting_type), 
+        	class: "fa fa-pencil", alt: "Edit meeting", title: "Edit meeting" %></td>
+        <td><%= link_to '', meeting_type, method: :delete, 
+        	class: "fa fa-times", alt: "Delete meeting", title: "Delete meeting",
+        	data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<!-- fa-trash  -->
+<br>
+
+<%= link_to 'New Meeting type', new_meeting_type_path, class: "new_button" %>
+            	
+            </div>
+          </div>
+
+

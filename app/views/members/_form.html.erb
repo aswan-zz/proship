@@ -11,7 +11,8 @@
       </ul>
     </div>
   <% end %>
-  
+  		<div class="form_group">
+  			<div id="member_bio" class="member_form_section">
 			  <div class="field">
 			    <%= f.label :first_name %><br>
 			    <%= f.text_field :first_name %>
@@ -28,9 +29,15 @@
 			    <%= f.label :birthday %><br>
 			    <%= f.date_select :birthday, :start_year=>1900 %>
 			  </div>
+			</div>
+			<div id="member_contact" class="member_form_section">
 			  <div class="field">
 			    <%= f.label :email %><br>
 			    <%= f.text_field :email %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :password %><br>
+			    <%= f.password_field :password %>
 			  </div>
 			  <div class="field">
 			    <%= f.label :main_phone %><br>
@@ -40,6 +47,10 @@
 			    <%= f.label :main_mobile %><br>
 			    <%= f.text_field :main_mobile %>
 			  </div>
+			</div>
+		</div>
+  		<div class="form_group">
+			<div id="member_location" class="member_form_section">
 			  <div class="field">
 			    <%= f.label :address %><br>
 			    <%= f.text_field :address %>
@@ -69,6 +80,8 @@
 			    <%= f.text_field :home_airport %>
 			    <div class="results" id="airport-search-results"></div>
 			  </div>
+			</div>
+			<div id="member_lebal" class="member_form_section">
 			  <div class="field">
 			    <%= f.label :residency %><br>
 			    <%= f.text_field :residency_id, 
@@ -89,13 +102,17 @@
 			    <%= f.label :criminal_convictions %><br>
 			    <%= f.text_area :criminal_convictions %>
 			  </div>
-			  <div class="field">
-			    <%= f.label :employee_number %><br>
-			    <%= f.number_field :employee_number %>
-			  </div>
-			  <div class="actions">
-			    <%= f.submit %>
-			  </div>
+			</div>
+		</div>
+		<div id="member_form_foot" class="member_form_section form_group">
+		  <div class="field">
+		    <%= f.label :employee_number %><br>
+		    <%= f.number_field :employee_number %>
+		  </div>
+		  <div class="actions">
+		    <%= f.submit "Save changes", class: "save_button" %>
+		  </div>
+		</div>
 <script>
   $(function() {
     new app.Countries;

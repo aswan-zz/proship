@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Member to:</strong>
+  <%= @message.member_to %>
+</p>
+
+<p>
+  <strong>Member from:</strong>
+  <%= @message.member_from %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @message.note %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @message.parent %>
+</p>
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>

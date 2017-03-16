@@ -1,9 +1,10 @@
-class AvailabilityTypesController < ApplicationController
+class AvailabilityTypesController < AuthenticationController
   before_action :set_availability_type, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /availability_types
   # GET /availability_types.json
   def index
+    @back_link = admin_path
     @availability_types = AvailabilityType.all
   end
 

@@ -1,0 +1,41 @@
+
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+          <div id="types_table" class="body_column one_hundred">
+            <div class="column_header">Listing Reminder Types</div>
+            <div class="body_column_content">
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Icon</th>
+      <th>Default Color</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reminder_types.each do |reminder_type| %>
+      <tr>
+        <td><%= reminder_type.name %></td>
+        <td><i class="<%= reminder_type.icon %>" style="color: <%= reminder_type.default_color %>"></i></td>
+        <td><%= reminder_type.default_color %></td>
+        <td><%= link_to '', edit_reminder_type_path(reminder_type), 
+        	class: "fa fa-pencil", alt: "Edit reminder", title: "Edit reminder" %></td>
+        <td><%= link_to '', reminder_type, method: :delete, 
+        	class: "fa fa-times", alt: "Delete reminder", title: "Delete reminder",
+        	data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<!-- fa-trash  -->
+<br>
+
+<%= link_to 'New Reminder type', new_reminder_type_path, class: "new_button" %>
+            	
+            </div>
+          </div>
+
+

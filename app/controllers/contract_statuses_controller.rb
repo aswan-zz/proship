@@ -1,9 +1,10 @@
-class ContractStatusesController < ApplicationController
+class ContractStatusesController < AuthenticationController
   before_action :set_contract_status, only: [:show, :edit, :update, :destroy]
 
   # GET /contract_statuses
   # GET /contract_statuses.json
   def index
+    @back_link = admin_path
     @contract_statuses = ContractStatus.all
   end
 

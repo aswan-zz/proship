@@ -1,12 +1,68 @@
-class MembersController < ApplicationController
+class MembersController < AuthenticationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :current_user, only: [:home, :login, :logout, :register]
+  
   # GET /members
   # GET /members.json
   def index
+    @back_link = admin_path
     @members = Member.all
   end
 
+  def home
+    @member = Member.new
+    render :layout => false
+  end
+  
+  def admin
+    @back_link = url_for :controller=>'members', :action=>'show', :id=> @current_user.id
+    render 'admin_actions'
+  end
+  
+  def logout
+    @current_member = nil
+    session[:member_id] = nil
+    redirect_to "/"
+  end
+
+  def login
+    @current_member = Member.where("email = ? AND fakepass = ?", 
+              params[:member][:email].downcase, 
+              params[:member][:password]).first
+
+    if @current_member
+      session[:member_id] = @current_member.id
+    else
+      msg = {}
+      msg["We can't find that. "] = "Either the email address or password are incorrect."
+    end
+    
+    respond_to do |format|
+      if @current_member
+        format.html { redirect_to edit_member_path(id), notice: 'Welcome' }
+        format.json { render json: {:status => :created, 
+                                    :url => edit_member_path(@current_member.id)} }
+      else
+        format.html { render "/" }
+        format.json { render json: msg, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  def register
+    @member = Member.new(member_params)
+    @member.fakepass = @member.password
+    respond_to do |format|
+      if @member.save
+        format.html { redirect_to @member, notice: 'Member was successfully created.' }
+        format.json { render json: {:status => :created, :url => edit_member_path(@member.id)} }
+      else
+        format.html { render :new }
+        format.json { render json: @member.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
   # GET /members/1
   # GET /members/1.json
   def show
@@ -85,6 +141,9 @@ class MembersController < ApplicationController
     end
     
     def get_state_prov
+      if params[:member][:state_prov_id] == nil
+        return
+      end
       r = StateProv.where(name: params[:member][:state_prov_id]).take
       if r != nil then
         r.id
@@ -92,6 +151,9 @@ class MembersController < ApplicationController
     end
     
     def get_country(country_name)
+      if params[:member][:state_prov_id] == nil
+        return
+      end
       r = Country.where(name: country_name).take
       if r != nil then
         r.id
@@ -99,15 +161,24 @@ class MembersController < ApplicationController
     end
 
     def get_airport
+      if params[:member][:home_airport] == nil
+        return
+      end
       Airport.where(params[:member][:home_airport]).take.id
     end
     
     def get_state_prov_name(state_prov_id)
+      if params[:member][:state_prov_id] == nil
+        return
+      end
       r = StateProv.find(state_prov_id) unless state_prov_id == nil
       r.name unless r == nil
     end
     
     def get_country_name(country_id)
+      if country_id == nil
+        return
+      end
       r = Country.find(country_id) unless country_id == nil
       if r != nil then
         r.name
@@ -115,10 +186,16 @@ class MembersController < ApplicationController
     end
 
     def get_airport_name
+      if params[:member][:home_airport] == nil
+        return
+      end
       Airport.where(params[:member][:home_airport]).take.name
     end
     
     def just_integer(data)
+      if data == nil
+        return
+      end
       data.gsub(/\D/, '')
     end
     
@@ -130,6 +207,7 @@ class MembersController < ApplicationController
       params[:member][:citizenship_id] = get_country(params[:member][:citizenship_id])
       params[:member][:main_mobile] = just_integer(params[:member][:main_mobile])
       params[:member][:main_phone] = just_integer(params[:member][:main_phone])
+      params[:member][:email] = (params[:member][:email]).downcase
 
       params.require(:member).permit(:first_name, :last_name, 
                                     :pronounce, :email, :birthday, 
@@ -138,7 +216,8 @@ class MembersController < ApplicationController
                                     :medical_conditions, :criminal_convictions, 
                                     :residency_id, :citizenship_id, 
                                     :employee_number,
-                                    :main_phone, :main_mobile)
+                                    :main_phone, :main_mobile,
+                                    :password, :password_confirmation)
                                     
     end
 end

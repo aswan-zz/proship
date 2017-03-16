@@ -13,9 +13,11 @@
 
   <div id="note_content_div" class="field">
     <strong><%= f.label "Add note" %></strong><br>
-    <%= f.text_area :content, cols: 32, rows: 5 %>
-    <%= f.hidden_field :member_from_id %>
+    <div class="note_content_textarea">
+    <%= f.text_area :content, rows: 5 %>
+    <%= f.hidden_field :member_from_id, value: @current_user.id %>
     <%= f.hidden_field :member_to_id %>
+    </div>
   	<div class="actions">
       <%= button_tag "✓ Save", name: "save_note" %>
       <%= button_tag "X Clear", type: :reset, id: "new_note_reset" %>

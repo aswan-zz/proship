@@ -1,11 +1,12 @@
-class CountriesController < ApplicationController
+class CountriesController < AuthenticationController
   before_action :set_country, only: [:show, :edit, :update, :destroy]
 
   # GET /countries
   # GET /countries.json
   def index  
+    @back_link = admin_path
     respond_to do |format|
-      format.html { @countries = Country.all }
+      format.html { @countries = Country.limit(30).all }
       format.json { @countries = Country.search(params[:term]) }
     end
   end

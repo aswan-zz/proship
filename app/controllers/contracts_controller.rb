@@ -1,4 +1,4 @@
-class ContractsController < ApplicationController
+class ContractsController < AuthenticationController
   before_action :set_contract, only: [:show, :edit, :update, :destroy]
 
   # GET /contracts

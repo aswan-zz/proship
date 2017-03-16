@@ -1,4 +1,4 @@
-class PhotosController < ApplicationController
+class PhotosController < AuthenticationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
 
   # GET /photos

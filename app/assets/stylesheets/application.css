@@ -18,6 +18,9 @@
  *= require jquery.fileupload-ui
  *= require font-awesome
  *
+ * Arial, Helvetica, sans-serif
+ * 'Helvetica Neue', Helvetica, sans-serif
+ * "Lucida Sans Unicode", "Lucida Grande", sans-serif
  * 
  */
 body {
@@ -25,7 +28,7 @@ body {
   margin: 0;
   background: #9ca4ab;
   color: white;
-  font: 1.0em arial, sans-serif;
+  font: 9pt 'Nunito', sans-serif;
 }
 #main {
   height: auto;
@@ -39,9 +42,13 @@ body {
   color: #ffffff;
   display: flex;
 }
+#header a {
+	color: white;
+}
 #head_logo {
   background: #22272d;
-  font: italic bold 1.0em verdana, sans-serif;
+  font-style: italic;
+  font-weight: bold;
   width: 140px;
   height: inherit;
   line-height: 56px;
@@ -49,7 +56,8 @@ body {
 }
 #head_back_btn {
   background: #2e3e52;
-  font: bold 1.0em verdana, sans-serif;
+  font-weight: bold;
+  font-size: 9pt;
   width: 56px;
   line-height: 56px;
   text-align: center;
@@ -66,7 +74,8 @@ body {
   vertical-align: middle;
 }
 .top_menu_item {
-  font: bold 1.0em arial, sans-serif;
+  font-weight: bold;
+  font-size: 9pt;
   line-height: 56px;
   align-content: center;
   padding-left: 30px;
@@ -74,7 +83,7 @@ body {
   float: left;
 }
 #head_login {
-  font: 0.7em arial, sans-serif;
+  font-size: 8pt;
   width: 214px;
   height: inherit;
   line-height: 56px;
@@ -87,12 +96,16 @@ body {
   padding: 0px 5px 0px 5px;
 }
 #logout {
-  color: #4bd3ea;
-  font: italic 0.9em arial, sans-serif;
+  color: #4bd3ea !important;
+  font-style: italic;
+  font-size: 8pt;
   width: 60px;
   line-height: 56px;
   float: right;
   margin: 0px 12px 0px 0px;
+}
+#logout a {
+  color: #4bd3ea !important;
 }
 #logout img {
   width: 14px;
@@ -167,7 +180,8 @@ body {
   width: 100%;
 }
 .column_header {
-  font: italic 0.9em arial, sans-serif;
+  font-style: italic;
+  font-size: 8pt;
   color: white;
   padding-left: 20px;
   line-height: 48px;
@@ -189,7 +203,8 @@ body {
   background: #3d3f44;
 }
 #body_center_col .body_column_content {
-  font: italic 7pt arial, sans-serif; 
+  font-style: italic;
+  font-size: 7pt; 
 
 }
 #body_essentials {
@@ -202,17 +217,20 @@ body {
 #body_essentials p {
   color: #7d7f84;
   border-bottom: 1px solid;
-  padding: 6px 0px 8px 0px;
-  font: italic bold 6pt arial, sans-serif; 
+  padding: 4px 0px 6px 0px;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 6pt; 
   width: 100%; 
   min-height: 14px;
 }
 #body_essentials p .candidate_info {
   color: #3d3f44;
   margin-left: 100px;
-  font-weight: bold;
   display: block;
-  font: italic bold 7pt arial, sans-serif; 
+  font-style: italic;
+  font-weight: bold;
+  font-size: 7pt;
 }
 #body_essentials p em {
   position: absolute;
@@ -225,14 +243,16 @@ body {
 #body_notes strong {
   margin-bottom: 10px;
   float:left;
-  font: italic bold 7.5pt arial, sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 7.5pt;
   color: #5d5f64;
 }
 #candidate_header {
   width: 100%;
   background: #303b49;
   color: white;
-  font: 7pt arial, sans-serif;
+  font-size: 7pt;
   display: flex;
 }
 #candidate_photo {
@@ -253,8 +273,12 @@ body {
   transform: translate(-50%,-50%);
   width: 100%;
 }
+#candidate_quick_bio_inner p {
+  margin: 1px;
+}
 #candidate_name {
-  font: bold 1.9em arial, sans-serif;
+  font-weight: bold;
+  font-size: 16pt;
 }
 #candidate_head_history {
   width: 240px;
@@ -283,7 +307,8 @@ body {
   padding: 0 8px 0 8px;
 }
 .chr_number {
-  font: bold 1.4em arial, sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
 }
 .cand_header_right img {
   margin: 2px auto 0px auto;
@@ -292,16 +317,17 @@ body {
 }
 .left_title {
   color: #2783c5;
-  font: italic 1.0em arial, sans-serif;
+  font-style: italic;
+  font-size: 10pt;
 }
 #body_left_col .body_column ul, #body_left_col .body_column ol {
   color: #a5a6a7;
-  font: 7pt arial, sans-serif;
+  font-size: 7pt;
   padding: 0;
   list-style-position: inside;
 }
 #body_left_col .body_column ul {
-  font: 8pt arial, sans-serif;
+  font-size: 8pt;
   list-style-type: none;
 }
 #body_left_col .body_column li {
@@ -333,7 +359,7 @@ body {
   padding-top: 10px;
 }
 .body_column_content th, .body_column_content td {
-  font: 6pt arial, sans-serif;
+  font-size: 6pt;
   color: #3d3f44;
   padding: 1px 18px 1px 0px;
 }
@@ -346,6 +372,10 @@ body {
 }
 #note_content_div {
   width: 264px;
+  float: left;
+}
+.note_content_textarea {
+  width: 260px;
   float: left;
 }
 #body_notes .body_column_content, #body_notes .body_column_content #new_note_div {
@@ -404,7 +434,7 @@ body {
   font-size: 14pt;
 }
 .note_content {
-  width: 250px;
+  width: 270px;
   padding: 0px 5px 12px 5px;
   box-sizing: border-box;
   border-bottom: 1px solid black;
@@ -418,14 +448,15 @@ body {
 }
 .note_entered_by {
   color: #c1c4ca;
-  font: 6pt arial, sans-serif;
+  font-size: 6pt;
   margin-top: 6px;
 }
 button, .new_button {
   color: white;
   background: #27b3d5;
   border: none;
-  font: bold 7pt Arial, sans-serif;
+  font-weight: bold;
+  font-size: 7pt;
   padding: 2px 12px 3px 6px;
   height: 22px;
   margin: 5px 0px 0px 5px;
@@ -477,28 +508,28 @@ input[type=radio] {
 }
 
 .results .ui-menu-item {
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
   padding: .4em .6em .4em .2em;
   position: relative;
   border: 0;
   border-left: 5px solid transparent;
   position: relative;
 }
-#body_note_types .body_column_content th, #body_note_types .body_column_content td, #body_availability_types .body_column_content th , #body_availability_types .body_column_content td{
-  font: bold 10pt Arial, sans-serif;
+#types_table .body_column_content th, #types_table .body_column_content td {
+  font-weight: bold;
+  font-size: 10pt;
   margin: 3px;
   padding: 3px 10px 3px 10px;
   border-bottom: 1px solid #5D5F64;
   text-align: left;
 }
-#body_note_types .body_column_content, #body_availability_types .body_column_content {
+#types_table .body_column_content, #types_table .body_column_content {
   padding-top: 16px;
 }
-#body_note_types .fa, #body_availability_types .fa {
+#types_table .fa, #types_table .fa {
   color: #67698a;
 }
-#body_note_types i.fa, #body_availability_types i.fa {
-  font-size: 1.5em;
+#types_table i.fa, #types_table i.fa {
+  font-size: 14pt;
 }
 .note_actions a {
   font-size: 10pt;
@@ -517,14 +548,14 @@ input[type=radio] {
   width: 236px;
 }
 .availability_type_button {
-  width: 110px;
+  width: 104px;
   height: 26px;
   color: white;
   font-size: 7pt;
   padding-top: 8px;
   box-sizing: border-box;
   text-align: center;
-  margin: 4px;
+  margin: 3px 6px 3px 0px;
   float: left;
   cursor: pointer;
 }
@@ -533,12 +564,12 @@ input[type=radio] {
 }
 #new_availability .start_date, #new_availability .end_date {
   float: left;
-  width: 116px;
+  width: 105px;
   line-height: 16px;
   margin-right: 8px;
 }
 #availability_comment {
-  width: 236px;
+  width: 210px;
   height: 60px;
 }
 #new_availability .start_end_date, #new_availability .comment {
@@ -556,13 +587,98 @@ input[type=radio] {
     z-index: 38;
     position: relative;
 	top: -19px;
-    left: 92px;
+    left: 86px;
 }
 #start_end_date input {
-  width: 110px;
+  width: 100px;
   margin-right: 6px;
 }
 #new_availability .actions {
   float: left;
   width: 100%;
+}
+#new_availability_div {
+  width: 250px;
+  float: left;
+}
+#new_availability_div .one_hundred, #new_availability_div .button_group {
+  float: left;
+}
+#new_availability_div .availability_header {
+  padding: 20px 0px 6px 0px;
+  color: #5d5f64;
+  float: left;
+}
+#availabilities_list_div {
+  float: left;
+}
+#start_end_date {
+  width: 100%;
+  float: left;
+}
+
+#list_members .body_column_content th, #list_members .body_column_content td {
+	font-size: 7.5pt;
+	text-align: left;
+	padding: 8px 20px 8px 0px;
+	overflow: hidden;
+	border-bottom: 1px solid #aaa;
+}
+#list_members .body_column_content th {
+	padding-top: 20px;
+}
+#list_members .body_column_content td a {
+	margin-right: 8px;
+	font-size: 9pt;
+	line-height: 11pt;
+}
+#list_members .body_column_content td .delete {
+  margin-right: 0px;
+}
+#list_members .body_column_content .form_action_links {
+  padding: 8px 0px 8px 0px;
+  width: 52px;
+  box-sizing: border-box;
+}
+#notice p {
+  font-size: 12pt;
+  color: white;
+}
+.form_group {
+  float: left;
+  border-bottom: 1px solid #aaa;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.member_form_section {
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+  height: inherit;
+}
+.member_form_section textarea {
+	width: 220px;
+	height: 60px;
+}
+.save_button {
+  line-height: 14pt;
+  padding: 4px 8px 4px 8px;
+  background: #0f6597;
+  color: white;
+  margin: 8px 0px 10px 0px;
+}
+#member_form_foot {
+	text-align: right;
+	width: 100%;
+}
+#member_form_foot .field {
+	margin: 0;
+	padding: 0;
+}
+#admin_action_list .body_column_content {
+	padding: 40px;
+}
+.admin_action {
+	font-size: 12pt;
+	padding-bottom: 10px;
 }

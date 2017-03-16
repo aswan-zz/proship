@@ -1,0 +1,33 @@
+		<div id="admin_action_list" class="body_column one_hundred">
+            <div class="column_header">Administrative Actions</div>
+            <div class="body_column_content">
+            	
+            	<%
+            	@admin_actions = [
+            		'Airports',
+            		'Availability Types',
+            		'Contract Statuses',
+            		'Countries',
+            		'States and Provinces',
+            		'Cruise Lines',
+            		'Meeting Types',
+            		'Note Types',
+            		'Reminder Types',
+            		'Roles',
+            		'Members']
+            	%>
+            	<% @admin_actions.each do |a|
+            		action = a.downcase.gsub(" ", "_")
+            		if action == "states_and_provinces"
+            			action = "state_provs"
+            		end
+            	%>
+            	<div class="admin_action"><%=link_to a, action %></div>
+            	<% end %>
+            	
+            	
+            	
+            	
+            	
+			</div>
+		</div>

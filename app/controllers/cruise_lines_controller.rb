@@ -1,9 +1,10 @@
-class CruiseLinesController < ApplicationController
+class CruiseLinesController < AuthenticationController
   before_action :set_cruise_line, only: [:show, :edit, :update, :destroy]
 
   # GET /cruise_lines
   # GET /cruise_lines.json
   def index
+    @back_link = admin_path
     @cruise_lines = CruiseLine.all
   end
 

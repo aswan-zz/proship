@@ -1,5 +1,6 @@
-class AvailabilitiesController < ApplicationController
+class AvailabilitiesController < AuthenticationController
   before_action :set_availability, only: [:show, :edit, :update, :destroy]
+  layout false
 
   # GET /availabilities
   # GET /availabilities.json
@@ -28,7 +29,7 @@ class AvailabilitiesController < ApplicationController
 
     respond_to do |format|
       if @availability.save
-        format.html { redirect_to @availability, notice: 'Availability was successfully created.' }
+        format.html { redirect_to availabilities_path, notice: 'Availability was successfully created.' }
         format.json { render :show, status: :created, location: @availability }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class AvailabilitiesController < ApplicationController
   def update
     respond_to do |format|
       if @availability.update(availability_params)
-        format.html { redirect_to @availability, notice: 'Availability was successfully updated.' }
+        format.html { redirect_to availabilities_path, notice: 'Availability was successfully updated.' }
         format.json { render :show, status: :ok, location: @availability }
       else
         format.html { render :edit }
@@ -59,6 +60,18 @@ class AvailabilitiesController < ApplicationController
       format.html { redirect_to availabilities_url, notice: 'Availability was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # Return the availabilities for a specific member
+  def member_availabilities
+    @availabilities = Availability.joins(:availability_type).
+              where(:member_id => params[:id]).
+              select('availabilities.*, availability_types.name as av_type_name, 
+                      availability_types.icon as av_type_icon, 
+                      availability_types.default_color as av_type_default_color').
+              order("updated_at DESC")
+    @grouped_types = @availabilities.group_by {|el| el["av_type_name"]}
+    render 'list'
   end
 
   private

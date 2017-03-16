@@ -1,9 +1,10 @@
-class NoteTypesController < ApplicationController
+class NoteTypesController < AuthenticationController
   before_action :set_note_type, only: [:show, :edit, :update, :destroy]
 
   # GET /note_types
   # GET /note_types.json
   def index
+    @back_link = admin_path
     @note_types = NoteType.all
   end
 

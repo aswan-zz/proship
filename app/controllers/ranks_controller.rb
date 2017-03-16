@@ -1,9 +1,10 @@
-class RanksController < ApplicationController
+class RanksController < AuthenticationController
   before_action :set_rank, only: [:show, :edit, :update, :destroy]
 
   # GET /ranks
   # GET /ranks.json
   def index
+    @back_link = admin_path
     @ranks = Rank.all
   end
 
