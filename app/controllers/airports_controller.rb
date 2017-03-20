@@ -7,7 +7,7 @@ class AirportsController < AuthenticationController
     @back_link = admin_path
     respond_to do |format|
       format.html { @airports = Airport.limit(30).all }
-      format.json { @airports = Airport.search(params[:term]) }
+      format.json { @airports = Airport.search(params[:term]).limit(10) }
     end
   end
 

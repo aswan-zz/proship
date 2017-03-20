@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316003354) do
+ActiveRecord::Schema.define(version: 20170316202748) do
 
   create_table "airports", force: :cascade do |t|
     t.string   "name"
@@ -168,10 +168,11 @@ ActiveRecord::Schema.define(version: 20170316003354) do
   create_table "messages", force: :cascade do |t|
     t.integer  "member_to_id"
     t.integer  "member_from_id"
-    t.text     "note"
+    t.text     "content"
     t.integer  "parent"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.boolean  "read"
   end
 
   add_index "messages", ["member_from_id"], name: "index_messages_on_member_from_id"

@@ -23,7 +23,7 @@
   </div>
   <div class="field comment">
   	<%= f.hidden_field :member_id %>
-  	<%= f.hidden_field :creator_id %>
+  	<%= f.hidden_field :creator_id, value: @current_user.id %>
     <%= f.label :comment %><br>
     <%= f.text_area :comment %>
   </div>
@@ -45,10 +45,8 @@
   </div>
 <% end %>
 <script>
-	$('#new_availability .start_date input').datepicker({
-		format: 'yyyy/mm/dd'
-	});
-	$('#new_availability .end_date input').datepicker({
-		format: 'yyyy/mm/dd',
-	});
+   $(function() {
+	   $("#new_availability .start_date input").datepicker({ dateFormat: "yy-mm-dd" }).val();
+	   $("#new_availability .end_date input").datepicker({ dateFormat: "yy-mm-dd" }).val();
+   });
 </script>

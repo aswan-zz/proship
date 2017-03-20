@@ -8,6 +8,8 @@
       <th>Start date</th>
       <th>End date</th>
       <th>Comment</th>
+      <th>Member</th>
+      <th>Created by</th>
       <th>Availability type</th>
       <th colspan="3"></th>
     </tr>
@@ -19,7 +21,9 @@
         <td><%= availability.start_date %></td>
         <td><%= availability.end_date %></td>
         <td><%= availability.comment %></td>
-        <td><%= availability.availability_type %></td>
+        <td><%= availability.member.first_name unless availability.member == nil %></td>
+        <td><%= availability.creator.first_name unless availability.creator == nil %></td>
+        <td><%= availability.availability_type.name unless availability.availability_type == nil %></td>
         <td><%= link_to 'Show', availability %></td>
         <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
         <td><%= link_to 'Destroy', availability, method: :delete, data: { confirm: 'Are you sure?' } %></td>

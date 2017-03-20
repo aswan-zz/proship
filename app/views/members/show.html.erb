@@ -1,10 +1,24 @@
 <% if notice%><p id="notice"><%= notice %></p><% end %>
 
-<%= render "candidate_profile" %>
-<div id="profile_row_one">
-<%= render "essentials" %>
-<%= render "notes" %>
-</div>
-<%= render "availability" %>
-<%= render "history" %>
-
+        <div id="body_center_col">
+			<script>
+				var member_id = <%= @member.id; %>
+			</script>
+			
+			<%= render "candidate_profile" %>
+			<div id="profile_row_one">
+			<%= render "essentials" %>
+			<%= render "notes" %>
+			</div>
+			<%= render "availability" %>
+			<%= render "history" %>
+		</div>
+        <div id="body_right_col">
+          <div class="right_col_btn"></div>
+          <div class="right_col_btn"></div>
+          <div class="right_col_btn"></div>
+          <div id="right_evaluation" class="body_column one_hundred">
+            <div class="column_header">Evaluation</div>
+            <div class="body_column_content"></div>
+          </div>
+        </div>

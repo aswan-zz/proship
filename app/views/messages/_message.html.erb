@@ -1,0 +1,16 @@
+      <% indent_class = "message_indent" unless !message.parent %>
+      <div class="message_wrapper <%= indent_class %>" id="message-#{message.id}">
+        <div class="message_delete"><%= link_to '', message, method: :delete, 
+        	class: "fa fa-times", alt: "Delete message", title: "Delete message",
+        	data: { confirm: 'Are you sure?' } %></div>
+        <div class="message_to"><div class="to_from">To: </div><%= message.member_to.full_name unless message.member_to == nil %></div>
+        <div class="message_from"><div class="to_from">From: </div><%= message.member_from.full_name unless message.member_from == nil %></div>
+        <div class="message_content"><%= message.content %></div>
+        <div class="message_parent"><%= message.parent.id unless !message.parent %></div>
+        <div class="message_reply_btn">
+	        <%= link_to ' Reply', messages_reply_path(message.id), 
+	        	class: "fa fa-reply ", id: "#{message.id}",
+	        	alt: "Reply to this message", title: "Reply to this message" %>
+        </div>
+      </div>
+      <div class="message_reply" id="message-<%= message.id %>-reply"><div class="message_form"></div><ul></ul></div>

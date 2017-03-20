@@ -6,8 +6,8 @@ class CountriesController < AuthenticationController
   def index  
     @back_link = admin_path
     respond_to do |format|
-      format.html { @countries = Country.limit(30).all }
-      format.json { @countries = Country.search(params[:term]) }
+      format.html { @countries = Country.limit(30) }
+      format.json { @countries = Country.search(params[:term]).limit(10) }
     end
   end
 

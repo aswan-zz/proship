@@ -1,10 +1,15 @@
+<div class="availability_header">
+	<strong>Upcoming Availability</strong>
+</div>
+
 <% @availabilities.each do |a| %>
 	<div class="availability_item">
-		<i class="<%= a.av_type_icon %>" 
-			style="background: <%= a.av_type_default_color %>"></i><%= a.av_type_name %> 
+		<i class="<%= a.availability_type.icon %> circle" 
+			style="background: <%= a.availability_type.default_color %>"></i>
+			<%= a.availability_type.name %> 
 			from <%= a.start_date %> to <%= a.end_date %>
 		<% if a.comment %>
-		 - <%= a.comment %>
+			<span class="availability_comment"> - <%= a.comment %></span>
 		<% end %>
 	</div>
 <% end %>

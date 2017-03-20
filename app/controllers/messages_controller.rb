@@ -4,7 +4,23 @@ class MessagesController < AuthenticationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    @messages = Message.includes(:member_to).includes(:member_from).all
+  end
+
+  def messages_to
+    @messages = Message.includes(:member_from).
+              where(:member_to_id => params[:id]).
+              order(updated_at: :DESC, read: :DESC)
+    @grouped_types = @messages.group_by {|el| el["read"]} unless @messages == nil
+    render 'thread'
+  end
+
+  def messages_from
+    @messages = Message.includes(:member_to).
+              where(:member_from_id => params[:id]).
+              order(updated_at: :DESC, read: :DESC)
+    @grouped_types = @messages.group_by {|el| el["read"]} unless @messages == nil
+    render 'thread'
   end
 
   # GET /messages/1
@@ -17,6 +33,34 @@ class MessagesController < AuthenticationController
     @message = Message.new
   end
 
+  # GET /messages/new
+  def new_reply
+    msg = Message.find(params[:id])
+    puts "Parent: " + msg.id.to_s
+    puts "member_to: " + msg.member_to_id.to_s
+    puts "member_from: " + msg.member_from_id.to_s
+    
+    @message = Message.new
+    @message.parent = msg
+    @message.member_to = msg.member_from
+    @message.member_from = msg.member_to
+    render 'new', layout: false
+  end
+  
+  def create_reply
+    @message = Message.create_from_hash(message_params)
+
+    respond_to do |format|
+      if @message.save
+        format.html { render 'message', layout: false, notice: 'Message was successfully created.' }
+        format.json { render :show, status: :ok, location: @message }
+      else
+        format.html { render json: @message.errors, status: :unprocessable_entity }
+        format.json { render json: @message.errors, status: :unprocessable_entity }
+      end
+    end    
+  end
+
   # GET /messages/1/edit
   def edit
   end
@@ -24,12 +68,12 @@ class MessagesController < AuthenticationController
   # POST /messages
   # POST /messages.json
   def create
-    @message = Message.new(message_params)
+    @message = Message.create_from_hash(message_params)
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render :show, status: :created, location: @message }
+        format.html { redirect_to messages_url, notice: 'Message was successfully created.' }
+        format.json { render :show, status: :ok, location: @message }
       else
         format.html { render :new }
         format.json { render json: @message.errors, status: :unprocessable_entity }
@@ -42,7 +86,7 @@ class MessagesController < AuthenticationController
   def update
     respond_to do |format|
       if @message.update(message_params)
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
+        format.html { redirect_to messages_url, notice: 'Message was successfully updated.' }
         format.json { render :show, status: :ok, location: @message }
       else
         format.html { render :edit }
@@ -69,6 +113,7 @@ class MessagesController < AuthenticationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:member_to_id, :member_from_id, :note, :parent)
+      params.require(:message).permit(:member_to_name, :member_to_id, 
+                                      :member_from_id, :content, :parent)
     end
 end

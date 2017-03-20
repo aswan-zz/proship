@@ -14,6 +14,14 @@ class MembersController < AuthenticationController
     render :layout => false
   end
   
+  def search
+    respond_to do |format|
+      format.html { @members = Member.limit(30).all }
+      format.json { @members = Member.search(params[:term]).select("first_name, last_name, id").limit(10) }
+    end
+    render :search
+  end
+  
   def admin
     @back_link = url_for :controller=>'members', :action=>'show', :id=> @current_user.id
     render 'admin_actions'

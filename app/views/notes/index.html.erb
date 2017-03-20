@@ -6,9 +6,13 @@
   <% end %>
 </div>
 <div id="past_notes">
+	<script>
+		var red_flags = 0;
+		var positive_notes = 0;
+	</script>
 	<% @notes.each do |note| %>
 	  <div class="past_note_item">
-	    <div class="note_type_icon"><i class="<%= note.note_type_icon %>" style="color: <%= note.note_type_default_color %>" alt="<%= note.note_type_name %>" title="<%= note.note_type_name %>"></i></div>
+	    <div class="note_type_icon"><i class="<%= note.note_type.icon %>" style="color: <%= note.note_type.default_color %>" alt="<%= note.note_type.name %>" title="<%= note.note_type.name %>"></i></div>
 	    <div class="note_content">
 	    	<%= note.content %>
 	    	<br />
@@ -30,15 +34,18 @@
 				class: "fa fa-times", alt: "Delete note", title: "Delete note" %>
 		</div>
 	  </div>
+	  <script>
+	  <% if note.note_type.name == 'Red Flag' %>
+	  	red_flags += 1;
+	  <% elsif note.note_type.name == 'Positive Note' %>
+	  	positive_notes += 1;
+	  <% end %>
+	  </script>
 	<% end %>
 </div>
 <script>
   $(document).ready(function(){
-  	<% if @grouped_types != nil && @grouped_types['Red Flag'] != nil %>
-	$("#cand_head_red_flag .chr_number").html("<%= @grouped_types['Red Flag'].length %>");
-	<% end %>
-  	<% if @grouped_types != nil && @grouped_types['Positive Note'] != nil %>
-	$("#cand_head_positive_note .chr_number").html("<%= @grouped_types['Positive Note'].length %>");   
-	<% end %>
+  	$("#cand_head_red_flag .chr_number").html(red_flags);
+	$("#cand_head_positive_note .chr_number").html(positive_notes); 
   });
 </script>

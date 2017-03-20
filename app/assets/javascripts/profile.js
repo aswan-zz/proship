@@ -25,6 +25,12 @@ app.Residency = function() {
   this._initAutocomplete();
 };
 
+app.Members = function() {
+  this._input = $('#message_member_to_name');
+  this._initAutocomplete();
+};
+
+
 app.Countries.prototype = {
 	_initAutocomplete: function() {
 	  this._input
@@ -144,4 +150,30 @@ app.Airport.prototype = {
     return false;
   }
 };
+
+app.Members.prototype = {
+	_initAutocomplete: function() {
+	  this._input
+	    .autocomplete({
+	      source: '/search/members',
+	      appendTo: '#member-search-results',
+	      select: $.proxy(this._select, this)
+	    })
+	    .autocomplete('instance')._renderItem = $.proxy(this._render, this);
+	},
+  _render: function(ul, item) {
+    var markup = [
+      '<span class="member_name"> ' + item.full_name + ' </span>'
+    ];
+    return $('<li>')
+      .append(markup.join(''))
+      .appendTo(ul);
+  },
+  _select: function(e, ui) {
+    this._input.val(ui.item.full_name);
+    $("#message_member_to_id").val(ui.item.id);
+    return false;
+  }
+};
+
 

@@ -65,13 +65,12 @@
         </div>
       </div>
       <div id="body_main_col">
-        <div id="body_center_col">
-<div id="notice">
-	<div class="one_hundred">
-		<i class="fa fa-times"></i>
-	</div>
-	<p><%= notice %></p>
-</div>
+		<div id="notice">
+			<div class="one_hundred">
+				<i class="fa fa-times"></i>
+			</div>
+			<p><%= notice %></p>
+		</div>
 <% if notice %>
 	<script>
 	$("#notice").slideDown();
@@ -83,16 +82,7 @@
 
         	
 <%= yield %>
-        </div>
-        <div id="body_right_col">
-          <div class="right_col_btn"></div>
-          <div class="right_col_btn"></div>
-          <div class="right_col_btn"></div>
-          <div id="right_evaluation" class="body_column one_hundred">
-            <div class="column_header">Evaluation</div>
-            <div class="body_column_content"></div>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>

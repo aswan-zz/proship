@@ -35,6 +35,12 @@ gem 'mini_magick'
 # Icons
 gem "font-awesome-rails"
 
+# Email handling
+gem 'griddler'
+
+# Comment threading
+gem 'awesome_nested_set'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

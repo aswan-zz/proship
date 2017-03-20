@@ -30,8 +30,17 @@ Rails.application.routes.draw do
   post '/login', to: 'members#login', as: 'login'
   post '/register' => 'members#register', as: 'register'
   
-  get 'members/:id/notes' => 'notes#member_notes', as: 'member_notes'
-  get 'members/:id/availabilities' => 'availabilities#member_availabilities', as: 'member_availabilities'
+  get 'search/members', to: 'members#search', as: 'members_search'
+  get 'members/:id/notes', to: 'notes#member_notes', as: 'member_notes'
+  
+  get 'messages/:id/reply/new', to: 'messages#new_reply', as: 'messages_reply'
+  get 'messages/to/:id', to: 'messages#messages_to', as: 'messages_to'
+  get 'messages/to/:id/from', to: 'messages#my_messages_to', as: 'my_messages_to'
+  get 'messages/from/:id', to: 'messages#messages_from', as: 'messages_from'
+  get 'messages/from/:id/to', to: 'messages#my_messages_from', as: 'my_messages_from'
+  post 'messages/:id/reply/create', to: 'messages#create_reply', as: 'messages_create_reply'
+  
+  get 'members/:id/availabilities', to: 'availabilities#member_availabilities', as: 'member_availabilities'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

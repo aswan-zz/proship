@@ -1,6 +1,5 @@
 class AvailabilitiesController < AuthenticationController
   before_action :set_availability, only: [:show, :edit, :update, :destroy]
-  layout false
 
   # GET /availabilities
   # GET /availabilities.json
@@ -16,6 +15,7 @@ class AvailabilitiesController < AuthenticationController
   # GET /availabilities/new
   def new
     @availability = Availability.new
+    render 'new', layout: false
   end
 
   # GET /availabilities/1/edit
@@ -25,6 +25,7 @@ class AvailabilitiesController < AuthenticationController
   # POST /availabilities
   # POST /availabilities.json
   def create
+    puts "\n\n availability_params = " + availability_params.to_s
     @availability = Availability.new(availability_params)
 
     respond_to do |format|
@@ -64,14 +65,11 @@ class AvailabilitiesController < AuthenticationController
 
   # Return the availabilities for a specific member
   def member_availabilities
-    @availabilities = Availability.joins(:availability_type).
+    @availabilities = Availability.includes(:availability_type).
               where(:member_id => params[:id]).
-              select('availabilities.*, availability_types.name as av_type_name, 
-                      availability_types.icon as av_type_icon, 
-                      availability_types.default_color as av_type_default_color').
               order("updated_at DESC")
     @grouped_types = @availabilities.group_by {|el| el["av_type_name"]}
-    render 'list'
+    render 'list', layout: false
   end
 
   private
@@ -82,6 +80,6 @@ class AvailabilitiesController < AuthenticationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def availability_params
-      params.require(:availability).permit(:start_date, :end_date, :comment, :availability_type_id)
+      params.require(:availability).permit(:member_id, :creator_id, :start_date, :end_date, :comment, :availability_type_id)
     end
 end

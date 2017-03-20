@@ -19,19 +19,9 @@ class NotesController < AuthenticationController
   end
   
   def member_notes
-    @notes = Note.joins(:note_type).
-              where(:member_to_id => params[:id]).
-              select('notes.*, note_types.name as note_type_name, 
-                      note_types.icon as note_type_icon, 
-                      note_types.default_color as note_type_default_color').
-              order("updated_at DESC")
+    @notes = Note.includes(:note_type).
+              where(:member_to_id => params[:id]).order("updated_at DESC")
     @grouped_types = @notes.group_by {|el| el["note_type_name"]}
-    #@red_flags = grouped_types["Red Flag"].length.to_s
-    #@positive_notes = grouped_types["Positive Note"].length.to_s
-    #@grouped_types.map {|k,v| [k, v.length]
-    #  k = k.downcase.gsub(/\s/, '_')
-    #  puts "\n\n k = " + k.to_s + " v.length = " + v.length.to_s
-    #}
     render 'index'
   end
 

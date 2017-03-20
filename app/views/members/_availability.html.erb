@@ -11,46 +11,6 @@
             	
             </div>
           </div>
-        <script>
-        $(document).ready(function(){
-		    $( "#new_availability_div" ).load( "/availabilities/new" );
-		$( document ).ajaxComplete(function( event, request, settings ) {
-	    	$("#availability_member_id").val(<%=@member.id%>);				    	
-			$( ".availability_type_button" ).click(function(e) {
-			    var url = $('#new_availability').attr("action");
-				var method = $('#new_availability').attr("method");
-				var id = $(this).attr('id');
-				$('#availability_availability_type_id').val(id);
-
-			    $.ajax({
-		           type: method,
-		           url: url,
-		           dataType : 'JSON',
-		           data: $("#new_availability").serialize(), 
-		           success: function(data) {
-		             $("#new_availability")[0].reset();
-		             load_availabilities();
-		           },
-		           error: function(data) {
-					 var jsonPretty = JSON.stringify(data, null, '\t');
-		           	 //alert(jsonPretty);
-		           	 var errorMsg = "";
-		           	 $.each( data.responseJSON, function( key, value ) {
-					   errorMsg += key + " " + value +"\n";
-					 });
-					 alert(errorMsg);
-		           }
-		         });
-		        e.preventDefault();
-				return false;		         
-			});
-		});
-			
-		});
-		function load_availabilities() {
-			$( "#availabilities_list_div" ).load( "/members/" + <%= @member.id %> + "/availabilities" );
-		}
-		</script>
 		
 
 

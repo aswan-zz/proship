@@ -1141,6 +1141,7 @@ Waypoints
 #login-form .login, #register-form .login {
 	margin-left: 104px;
 	background: orange;
+	color: white;
 }
 .highlight {
 	background: #ffcccc;

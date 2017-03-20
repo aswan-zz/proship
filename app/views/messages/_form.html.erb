@@ -1,33 +1,39 @@
-<%= form_for(@message) do |f| %>
-  <% if @message.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+<div id="new_message_form">
+	<%= form_for(@message) do |f| %>
+	  <% if @message.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+	
+	      <ul>
+	      <% @message.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	
+	  <div class="field message_form_to">
+	    <%= f.hidden_field :member_from_id, value: @current_user.id %>
+	    <%= f.hidden_field :parent %>
+	
+	    <%= f.label :member_to_id, "To:" %><br>
+	    <%= f.text_field :member_to_name %>
+	    <%= f.hidden_field :member_to_id %>
+	    <div class="results" id="member-search-results"></div>
+	  </div>
+	  <div class="message_content">
+	    <%= f.label :content, "Message:" %><br>
+	    <%= f.text_area :content %>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit "Save", class: "new_button" %>
+	  </div>
+	
+	<script>
+	  $(function() {
+	    new app.Members;
+	  });
+	</script>
 
-      <ul>
-      <% @message.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :member_to_id %><br>
-    <%= f.text_field :member_to_id %>
-  </div>
-  <div class="field">
-    <%= f.label :member_from_id %><br>
-    <%= f.text_field :member_from_id %>
-  </div>
-  <div class="field">
-    <%= f.label :note %><br>
-    <%= f.text_area :note %>
-  </div>
-  <div class="field">
-    <%= f.label :parent %><br>
-    <%= f.number_field :parent %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+</div>

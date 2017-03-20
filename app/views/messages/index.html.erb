@@ -1,28 +1,34 @@
+<% if notice %>
 <p id="notice"><%= notice %></p>
-
-<h1>Listing Messages</h1>
+<% end %>
+          <div id="types_table" class="body_column one_hundred">
+            <div class="column_header">Listing Messages</div>
+            <div class="body_column_content">
 
 <table>
   <thead>
     <tr>
       <th>Member to</th>
       <th>Member from</th>
-      <th>Note</th>
+      <th>Message</th>
       <th>Parent</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @messages.each do |message| %>
       <tr>
-        <td><%= message.member_to %></td>
-        <td><%= message.member_from %></td>
-        <td><%= message.note %></td>
-        <td><%= message.parent %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= message.member_to.full_name unless message.member_to == nil %></td>
+        <td><%= message.member_from.full_name unless message.member_from == nil %></td>
+        <td><%= message.content %></td>
+        <td><%= message.parent.id unless !message.parent %></td>
+        
+        <td><%= link_to '', edit_message_path(message), 
+        	class: "fa fa-pencil", alt: "Edit message", title: "Edit message" %></td>
+        <td><%= link_to '', message, method: :delete, 
+        	class: "fa fa-times", alt: "Delete message", title: "Delete message",
+        	data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +36,8 @@
 
 <br>
 
-<%= link_to 'New Message', new_message_path %>
+<%= link_to 'New Message', new_message_path, class: "new_button" %>
+
+            </div>
+          </div>
+

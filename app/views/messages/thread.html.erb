@@ -1,0 +1,66 @@
+
+<div id="messages_thread">
+    <% @messages.each do |message| %>
+    	<%= render 'message', message: message %>
+    <% end %>
+
+	<script>
+		$(document).ready(function() {
+			var form_loaded = false;
+			$(".fa-reply").click(function(e) {
+			    e.preventDefault();
+			    var id = $(this).attr("id");
+			    var url = $(this).attr("href");
+			    $( "#message-" + id + "-reply .message_form" ).load( url )
+				
+				return false;
+			});
+			$( document ).ajaxComplete(function( event, request, settings ) {
+				if (form_loaded) {
+					return false;
+				}
+				form_loaded = true;
+			    $( ".message_reply" ).fadeIn();
+			    $("#new_message").attr("action", "<%= messages_create_reply_path %>");
+				$(".message_cancel").click(function(e) {
+					var id = $(this).attr("id").replace("message_cancel_", "");
+					e.preventDefault();
+					$("#message-" + id + "-reply .message_form").fadeOut();
+					return false;
+				});
+				$("#new_message_form form").submit(function(e) {
+					var url = $('#new_message').attr("action");
+					var method = $('#new_message').attr("method");
+					var form_data = $("#new_message").serialize();
+					var id = $("#message_parent").val();
+					form_loaded = false;
+					e.preventDefault();
+	
+					$.ajax({
+						type: method,
+						url: url,
+						data: form_data, 
+						data_type: "JSON",
+						success: function(data) {
+							$("#message-" + id + "-reply  .message_form").fadeOut();
+							$("#message-" + id + "-reply ul").append("<li>" + data + "</div>");							
+							//$("#message-" + id + "-reply").fadeIn();
+							form_loaded= true;
+						},
+						error: function(data) {
+							var jsonPretty = JSON.stringify(data, null, '\t');
+							//alert(jsonPretty);
+							var errorMsg = "";
+							$.each( data.responseJSON, function( key, value ) {
+								errorMsg += key + " " + value +"\n";
+							});
+							alert("Error: " + errorMsg);
+						}
+					});
+					return false;
+				});
+			});
+		});
+	</script>
+</div>
+
